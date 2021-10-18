@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/hello_"
+        android:layout_width="91dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="top"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/hello_"
+        android:textAppearance="@style/hello_"
+        android:translationY="-1.43sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--    view login-->
+    <View
+        android:id="@+id/group_20"
+        android:layout_width="380dp"
+        android:layout_height="447dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="15dp"
+        android:background="#00000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--    view logo-->
+    <!--    Not a member-->
+    <TextView
+        android:id="@+id/not_a_member"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="404dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="top"
+        android:lineSpacingExtra="17sp"
+        android:text="@string/not_a_member"
+        android:textAppearance="@style/not_a_member"
+        android:translationY="-8.3sp"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="@+id/group_20" />
+    <!--    Or continue with-->
+    <ImageView
+        android:id="@+id/group_24"
+        android:layout_width="246.5dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="264dp"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="@+id/group_20"
+        app:srcCompat="@drawable/group_24" />
+<!--button gg-->
+    <ImageButton
+        android:id="@+id/super_g"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toBottomOf="@+id/group_24"
+        app:srcCompat="@drawable/super_g"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="324dp"
+        android:background="@drawable/rounded_button"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="@+id/group_20"
+        app:srcCompat="@drawable/path"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
