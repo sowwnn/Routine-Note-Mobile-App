@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/drawable/rounded_button.xml" value="0.19074074074074074" />
+        <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/drawable/rounded_edittext.xml" value="0.19074074074074074" />
+        <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/drawable/rounded_view.xml" value="0.19074074074074074" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/drawable/roundedbutton.xml" value="0.290625" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_login.xml" value="0.1793478260869565" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />

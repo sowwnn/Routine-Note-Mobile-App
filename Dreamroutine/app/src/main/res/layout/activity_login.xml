@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFFEB3B"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
@@ -20,35 +21,50 @@
         android:translationY="-1.43sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--    view login-->
+
+
+    <!--    Or continue with-->
+
     <View
         android:id="@+id/group_20"
         android:layout_width="380dp"
         android:layout_height="447dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="15dp"
-        android:background="#00000000"
+        android:background="@drawable/rounded_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--    view logo-->
-    <!--    Not a member-->
+
     <TextView
         android:id="@+id/not_a_member"
-        android:layout_width="180dp"
+        android:layout_width="130dp"
         android:layout_height="30dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="404dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="396dp"
         android:fontFamily="@font/montserrat"
         android:gravity="top"
         android:lineSpacingExtra="17sp"
         android:text="@string/not_a_member"
         android:textAppearance="@style/not_a_member"
+        android:textColor="#757575"
         android:translationY="-8.3sp"
         app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toTopOf="@+id/group_20" />
-    <!--    Or continue with-->
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="388dp"
+        android:text="@string/register"
+        android:textAppearance="@style/register"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="@+id/group_20" />
+
     <ImageView
         android:id="@+id/group_24"
         android:layout_width="246.5dp"
@@ -59,27 +75,28 @@
         app:layout_constraintTop_toTopOf="@+id/group_20"
         app:srcCompat="@drawable/group_24" />
 <!--button gg-->
+
     <ImageButton
         android:id="@+id/super_g"
         style="@android:style/Widget.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="315dp"
         android:background="@drawable/rounded_button"
         android:minWidth="48dp"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toBottomOf="@+id/group_24"
+        app:layout_constraintTop_toTopOf="@+id/group_20"
         app:srcCompat="@drawable/super_g"
         tools:ignore="SpeakableTextPresentCheck" />
-
+<!--button fb-->
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/super_fb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="164dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="315dp"
         android:background="@drawable/rounded_button"
         android:minWidth="48dp"
         android:minHeight="48dp"
@@ -87,6 +104,79 @@
         app:layout_constraintTop_toTopOf="@+id/group_20"
         app:srcCompat="@drawable/path"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/super_IOS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="315dp"
+        android:background="@drawable/rounded_button"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="@+id/group_20"
+        app:srcCompat="@drawable/shape"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="@string/Username"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingStart="15dp"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="270dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="@string/Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:paddingStart="15dp"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="216dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#FF3700B3"
+        android:text="Login"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/group_20" />
+
+    <TextView
+        android:id="@+id/forgot_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="325dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/Forgot_pass"
+        android:textColor="#FF3700B3"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

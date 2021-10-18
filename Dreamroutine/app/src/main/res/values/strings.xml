@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Dream-routine</string>
     <string name="hello_">Hello!</string>
-    <string name="not_a_member">Not a member? Register now</string>
+    <string name="not_a_member">Not a member?</string>
+    <string name="register"><u>Register now</u></string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Forgot_pass"><u>Forgot password ?</u></string>
 </resources>

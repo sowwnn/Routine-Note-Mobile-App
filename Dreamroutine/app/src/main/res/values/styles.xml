@@ -7,9 +7,15 @@
     </style>
 
     <style name="not_a_member">
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:letterSpacing">0.05</item>
         <item name="android:textColor">#E6757575</item>
+    </style>
+
+    <style name="register">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textColor">#FFC107</item>
     </style>
 
 
