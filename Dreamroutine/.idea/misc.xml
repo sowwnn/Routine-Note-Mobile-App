@@ -10,6 +10,9 @@
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_login.xml" value="0.1793478260869565" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main2.xml" value="0.1793478260869565" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/card_item.xml" value="0.1" />
       </map>
     </option>
   </component>
