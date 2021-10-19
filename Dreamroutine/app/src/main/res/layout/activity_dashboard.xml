@@ -8,25 +8,123 @@
     android:background="#FFFFFF">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:alpha="@integer/material_motion_duration_short_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:alpha="@integer/material_motion_duration_short_1">
+        app:layout_constraintTop_toBottomOf="@+id/txtcategori">
 
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/swiperview"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="0dp"
+            android:layout_height="150dp"
             android:clipToPadding="false"
 
             android:foregroundGravity="center"
             android:overScrollMode="never"
             tools:ignore="SpeakableTextPresentCheck" />
     </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/btn3bacham"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bacham"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnnoti"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bell"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnsearch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/btnnoti"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/search"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtHelloUser"
+        android:layout_width="294dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/montserrat"
+        android:letterSpacing="0.12"
+        android:text="Hello, User01!"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn3bacham" />
+
+    <TextView
+        android:id="@+id/txtcategori"
+        android:layout_width="181dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:alpha="@integer/material_motion_duration_medium_1"
+        android:fontFamily="@font/montserrat"
+        android:letterSpacing="0.13"
+        android:shadowDx="@integer/material_motion_duration_medium_1"
+        android:text=" CATEGORIES"
+        android:textColor="#152D6B"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHelloUser" />
+
+    <TextView
+        android:id="@+id/txttodaytask"
+        android:layout_width="181dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:alpha="@integer/material_motion_duration_medium_1"
+        android:fontFamily="@font/montserrat"
+        android:letterSpacing="0.13"
+        android:shadowDx="@integer/material_motion_duration_medium_1"
+        android:text=" TODAY'S TASK"
+        android:textColor="#152D6B"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="343dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txttodaytask">
+
+        <ListView
+            android:id="@+id/todolist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

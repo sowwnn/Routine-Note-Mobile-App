@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.ViewParent;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,12 @@ public class Dashboard extends AppCompatActivity {
 
     private ArrayList<Swiper> modeArrayList;
     private SwiperAdapter swiperAdapter;
+
+    // List todo
+    ListView list;
+    ArrayList<Todo> arrayList;
+    TodoAdapter todoAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,16 @@ public class Dashboard extends AppCompatActivity {
 
             }
         });
+
+
+        list = findViewById(R.id.todolist);
+
+        arrayList = Todo.initTodo();
+
+        todoAdapter = new TodoAdapter(Dashboard.this,R.layout.todo_item,arrayList);
+
+        list.setAdapter(todoAdapter);
+
     }
 
     private void loadCards() {
@@ -76,4 +93,5 @@ public class Dashboard extends AppCompatActivity {
         //set default padding from left/right
         viewPager.setPadding(100,0,100,0);
     }
+
 }
