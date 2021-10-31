@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Progress">
+            <menu>
+                <item
+                    android:id="@+id/analytics"
+                    android:icon="@drawable/analytics"
+                    android:title="@string/Analytics" />
+                <item
+                    android:id="@+id/marks"
+                    android:icon="@drawable/marks"
+                    android:title="@string/Marks" />
+                <item
+                    android:id="@+id/categories"
+                    android:icon="@drawable/categories"
+                    android:title="@string/Categories" />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:icon="@drawable/profile"
+                android:title="Profile" />
+            <item
+                android:icon="@drawable/login_finger"
+                android:title="Login with fingerprint" />
+            <item
+                android:icon="@drawable/dark_mode"
+                android:title="Dark Theme" />
+            <item
+                android:icon="@drawable/bug_report"
+                android:title="Report" />
+        </menu>
+    </item>
+
+</menu>
+

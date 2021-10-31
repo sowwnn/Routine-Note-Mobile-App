@@ -40,6 +40,5 @@ public class TodoAdapter extends ArrayAdapter {
 
         return convertView;
 
-
     }
 }

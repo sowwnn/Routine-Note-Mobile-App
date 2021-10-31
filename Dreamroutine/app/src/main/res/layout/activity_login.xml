@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FFFFEB3B"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFEB3B"
     tools:context=".LoginActivity">
 
     <TextView
@@ -74,7 +74,7 @@
         app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toTopOf="@+id/group_20"
         app:srcCompat="@drawable/group_24" />
-<!--button gg-->
+    <!--button gg-->
 
     <ImageButton
         android:id="@+id/super_g"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toTopOf="@+id/group_20"
         app:srcCompat="@drawable/super_g"
         tools:ignore="SpeakableTextPresentCheck" />
-<!--button fb-->
+    <!--button fb-->
     <ImageButton
         android:id="@+id/super_fb"
         android:layout_width="wrap_content"
@@ -133,6 +133,20 @@
         android:minHeight="48dp"
         android:paddingStart="15dp"
         app:layout_constraintStart_toStartOf="@+id/group_20"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <TextView
+        android:id="@+id/forgot_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="325dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/Forgot_pass"
+        android:textColor="#FF3700B3"
+        app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -149,7 +163,8 @@
         android:minHeight="48dp"
         android:paddingStart="15dp"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -158,25 +173,12 @@
         android:layout_marginStart="96dp"
         android:layout_marginTop="216dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="#FF3700B3"
-        android:text="Login"
+        android:backgroundTint="@color/purple_700"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/Login"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/group_20" />
-
-    <TextView
-        android:id="@+id/forgot_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="325dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/Forgot_pass"
-        android:textColor="#FF3700B3"
-        app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
