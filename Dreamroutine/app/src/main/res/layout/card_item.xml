@@ -16,8 +16,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="5dp"
             android:orientation="vertical"
-            >
+            android:translationZ="5dp">
 
             <View
                 android:id="@+id/cardbg"
