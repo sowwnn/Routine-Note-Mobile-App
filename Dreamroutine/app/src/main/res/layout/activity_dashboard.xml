@@ -103,6 +103,7 @@
             android:id="@+id/swiperview"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:clickable="true"
             android:clipToPadding="false"
             android:foregroundGravity="center"
             android:overScrollMode="never"

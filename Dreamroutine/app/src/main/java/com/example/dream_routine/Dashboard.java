@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -40,7 +44,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     private ArrayList<Swiper> modeArrayList;
     private SwiperAdapter swiperAdapter;
 
-    // List todo
+    // Listtodo
     ListView list;
     ArrayList<Todo> arrayList;
     TodoAdapter todoAdapter;
@@ -52,6 +56,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     AutoCompleteTextView txttag;
     ArrayAdapter<String> adapterTag;
 
+    //Intent
+    ViewPager cardtask;
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,17 +76,13 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 
@@ -90,6 +94,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         todoAdapter = new TodoAdapter(Dashboard.this, R.layout.todo_item, arrayList);
 
         list.setAdapter(todoAdapter);
+
         //sidebar
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -128,6 +133,36 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 //                Toast.makeText(getApplicationContext(),"Tag: "+tag,Toast.LENGTH_SHORT).show();
 //            }
 //        });
+
+
+
+        //CardItem click
+        cardtask = findViewById(R.id.swiperview);
+        cardtask.setOnTouchListener(new View.OnTouchListener() {
+                    private boolean moved;
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                            moved = false;
+                        }
+                        if (motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
+                            moved = true;
+                        }
+                        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                            if (!moved) {
+                                view.performClick();
+                            }
+                        }
+
+                        return false;
+                    }});
+        cardtask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent task = new Intent(Dashboard.this,CalendarActivity.class);
+                startActivity(task);
+            }
+        });
 }
 
     @Override

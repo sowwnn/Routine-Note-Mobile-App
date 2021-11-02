@@ -11,6 +11,8 @@
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main2.xml" value="0.1793478260869565" />
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/ic_bell.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_tag.xml" value="0.32" />
         <entry key="app/src/main/res/drawable/menu.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/rounded_bottomsheet.xml" value="0.2675925925925926" />
@@ -20,6 +22,7 @@
         <entry key="app/src/main/res/drawable/rounded_edittext_bottom.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/rounded_small_btn.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/rounded_view.xml" value="0.2675925925925926" />
+        <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3215794408403646" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15020263424518743" />
