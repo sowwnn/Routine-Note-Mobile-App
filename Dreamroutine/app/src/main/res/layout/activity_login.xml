@@ -2,33 +2,37 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FFFFEB3B"
+    android:background="@color/yellow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
+    <!--    Or continue with-->
+
     <TextView
         android:id="@+id/hello_"
-        android:layout_width="91dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="204dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/montserrat"
         android:gravity="top"
         android:lineSpacingExtra="3sp"
         android:text="@string/hello_"
         android:textAppearance="@style/hello_"
+        android:textSize="35sp"
+        android:textStyle="bold"
         android:translationY="-1.43sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!--    Or continue with-->
+    <!--button gg-->
 
     <View
         android:id="@+id/group_20"
-        android:layout_width="380dp"
-        android:layout_height="447dp"
+        android:layout_width="381dp"
+        android:layout_height="505dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="140dp"
         android:layout_marginEnd="15dp"
@@ -42,8 +46,8 @@
         android:id="@+id/not_a_member"
         android:layout_width="130dp"
         android:layout_height="30dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="396dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat"
         android:gravity="top"
         android:lineSpacingExtra="17sp"
@@ -52,56 +56,62 @@
         android:textColor="#757575"
         android:translationY="-8.3sp"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="@+id/group_20" />
+        app:layout_constraintTop_toBottomOf="@+id/super_fb" />
 
     <TextView
         android:id="@+id/register"
         android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="210dp"
-        android:layout_marginTop="388dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:letterSpacing="0.1"
+        android:textStyle="bold"
         android:text="@string/register"
         android:textAppearance="@style/register"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="@+id/group_20" />
+        app:layout_constraintTop_toBottomOf="@+id/super_fb" />
 
     <ImageView
         android:id="@+id/group_24"
         android:layout_width="246.5dp"
         android:layout_height="30dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/group_20"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="@+id/group_20"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         app:srcCompat="@drawable/group_24" />
-<!--button gg-->
+
+    <!--button fb-->
 
     <ImageButton
         android:id="@+id/super_g"
         style="@android:style/Widget.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="315dp"
-        android:background="@drawable/rounded_button"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/rounded_small_btn"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="@+id/group_20"
+        app:layout_constraintEnd_toStartOf="@+id/super_fb"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@+id/group_24"
         app:srcCompat="@drawable/super_g"
         tools:ignore="SpeakableTextPresentCheck" />
-<!--button fb-->
+
     <ImageButton
         android:id="@+id/super_fb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="164dp"
-        android:layout_marginTop="315dp"
-        android:background="@drawable/rounded_button"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_small_btn"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="@+id/group_20"
+        app:layout_constraintTop_toBottomOf="@+id/group_24"
         app:srcCompat="@drawable/path"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -109,74 +119,83 @@
         android:id="@+id/super_IOS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="228dp"
-        android:layout_marginTop="315dp"
-        android:background="@drawable/rounded_button"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_small_btn"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="@+id/group_20"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/super_fb"
+        app:layout_constraintTop_toBottomOf="@+id/group_24"
         app:srcCompat="@drawable/shape"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="200dp"
+        android:id="@+id/txtnewtask"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/rounded_edittext"
-        android:ems="10"
         android:fontFamily="@font/montserrat"
-        android:hint="@string/Username"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingStart="15dp"
-        app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:drawablePadding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/group_20"
+        android:drawableStart="@drawable/ic_account"
+        android:hint="Username"
+        />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="270dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:fontFamily="@font/montserrat"
+        android:drawableStart="@drawable/ic_key"
+        android:drawablePadding="10dp"
         android:hint="@string/Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingStart="15dp"
-        app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtnewtask" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="218dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="216dp"
+        android:layout_width="268dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="#FF3700B3"
-        android:text="Login"
+        android:backgroundTint="@color/purple"
+        android:text="login"
         android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/group_20" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
         android:id="@+id/forgot_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="325dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="352dp"
         android:fontFamily="@font/montserrat"
+        android:letterSpacing="0.1"
         android:text="@string/Forgot_pass"
-        android:textColor="#FF3700B3"
+        android:textColor="@color/gray"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

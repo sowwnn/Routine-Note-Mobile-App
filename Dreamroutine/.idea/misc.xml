@@ -11,12 +11,26 @@
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main2.xml" value="0.1793478260869565" />
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/ic_tag.xml" value="0.32" />
+        <entry key="app/src/main/res/drawable/menu.xml" value="0.2675925925925926" />
+        <entry key="app/src/main/res/drawable/rounded_bottomsheet.xml" value="0.2675925925925926" />
+        <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.31296296296296294" />
+        <entry key="app/src/main/res/drawable/rounded_button2.xml" value="0.31296296296296294" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/rounded_edittext_bottom.xml" value="0.2675925925925926" />
+        <entry key="app/src/main/res/drawable/rounded_small_btn.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/rounded_view.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3215794408403646" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15020263424518743" />
+        <entry key="app/src/main/res/layout/bottom_sheet_new_task.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.4325528562608135" />
-        <entry key="app/src/main/res/layout/todo_item.xml" value="0.3740488414298595" />
+        <entry key="app/src/main/res/layout/dropdown_tag.xml" value="0.15020263424518743" />
+        <entry key="app/src/main/res/layout/fragment_bottom_sheet_new_task.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/tag_item.xml" value="0.15020263424518743" />
+        <entry key="app/src/main/res/layout/todo_item.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.30885416666666665" />
       </map>
     </option>
   </component>

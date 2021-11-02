@@ -9,12 +9,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.ViewParent;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -39,6 +44,13 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     ListView list;
     ArrayList<Todo> arrayList;
     TodoAdapter todoAdapter;
+
+    //Bottom Sheet
+    FloatingActionButton btnnewtask;
+    BottomSheetDialog bottomSheetNewTask;
+    String[] tags = {"University","Business","Job"};
+    AutoCompleteTextView txttag;
+    ArrayAdapter<String> adapterTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +103,31 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        //BottomSheet
+        btnnewtask = findViewById(R.id.btnnewtask);
+        btnnewtask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetNewTask = new BottomSheetDialog(Dashboard.this,R.style.BottomSheetStyle);
+                View v = LayoutInflater.from(Dashboard.this).inflate(R.layout.bottom_sheet_new_task,findViewById(R.id.bottomsheet));
+                bottomSheetNewTask.setContentView(v);
+                bottomSheetNewTask.show();
+            }
+        });
+
+//        txttag = findViewById(R.id.txttag);
+//        adapterTag = new ArrayAdapter<String>(this,R.layout.dropdown_tag,tags );
+//        txttag.setAdapter(adapterTag);
+//        txttag.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String tag = parent.getItemAtPosition(position).toString();
+//                Toast.makeText(getApplicationContext(),"Tag: "+tag,Toast.LENGTH_SHORT).show();
+//            }
+//        });
 }
 
     @Override

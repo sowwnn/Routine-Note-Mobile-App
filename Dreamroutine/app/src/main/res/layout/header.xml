@@ -7,7 +7,7 @@
     android:foregroundGravity="bottom"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@color/dark_yellow">
+    android:background="@drawable/menu">
 
     <ImageView
         android:id="@+id/imageView"
@@ -26,6 +26,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/logo_name"
+        android:textStyle="bold"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

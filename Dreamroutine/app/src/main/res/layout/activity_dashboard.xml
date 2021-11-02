@@ -24,17 +24,18 @@
         app:layout_constraintTop_toBottomOf="@+id/txttodaytask">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+            android:id="@+id/btnnewtask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="36dp"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="#51BF6A"
             android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/todolist"
             app:srcCompat="@drawable/ic_baseline_add_24"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+            />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -57,7 +58,7 @@
             android:layout_marginTop="50dp"
             android:fontFamily="@font/montserrat"
             android:letterSpacing="0.12"
-            android:text="Hello, User01!"
+            android:text="@string/hello_user01"
             android:textColor="#000000"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -125,7 +126,8 @@
             android:layout_height="314dp"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txttodaytask">
+            app:layout_constraintTop_toBottomOf="@+id/txttodaytask"
+            android:divider="@null">
 
         </ListView>
 
@@ -133,11 +135,11 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:itemIconTint="@color/purple_500"
+        app:itemIconTint="@color/purple"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>

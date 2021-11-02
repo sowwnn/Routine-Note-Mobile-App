@@ -5,7 +5,7 @@
 
     <!-- Set màu nền-->
     <solid
-        android:color="#031956"
+        android:color="#CCD7F5"
         android:state_pressed="false">
     </solid>
 
@@ -25,7 +25,7 @@
 
     <!-- và đây là bán kính đường tròn ở 4 góc -->
     <corners
-        android:radius="18dp" >
+        android:radius="20dp" >
     </corners>
 
 </shape>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomsheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
+    android:background="@drawable/rounded_bottomsheet"
+    android:backgroundTint="#FAC12E">
+
+    <EditText
+        android:id="@+id/txttaskname"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_edittext_bottom"
+        android:drawableStart="@drawable/ic_create"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Task name"
+        android:inputType="text"
+        android:paddingStart="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txttaskdeadline"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_edittext_bottom"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="DD/MM/YY"
+        android:inputType="date"
+        android:paddingStart="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txttaskname" />
+
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        android:id="@+id/textInputLayout"-->
+    <!--        style="@style/DropMenu"-->
+    <!--        android:layout_width="323dp"-->
+    <!--        android:layout_height="54dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:background="@drawable/rounded_edittext"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/txttaskdeadline">-->
+
+    <!--        <AutoCompleteTextView-->
+    <!--            android:id="@+id/txttag"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:drawableStart="@drawable/ic_tag"-->
+    <!--            android:drawablePadding="10dp"-->
+    <!--            android:fontFamily="@font/montserrat"-->
+    <!--            android:hint="Tag"-->
+    <!--            android:inputType="none"-->
+    <!--            android:paddingStart="15dp" />-->
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <EditText
+        android:id="@+id/txtnote"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_edittext_bottom"
+        android:drawableStart="@drawable/ic_tag"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Tag"
+        android:inputType="textLongMessage"
+        android:paddingStart="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txttaskdeadline" />
+
+    <EditText
+        android:id="@+id/txt"
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_edittext_bottom"
+        android:drawableStart="@drawable/ic_notes"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Note..."
+        android:inputType="textLongMessage"
+        android:paddingStart="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtnote" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="157dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/rounded_button"
+        android:text="Done"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
