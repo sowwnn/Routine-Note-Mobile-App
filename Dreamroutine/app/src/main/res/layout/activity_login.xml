@@ -21,7 +21,7 @@
         android:lineSpacingExtra="3sp"
         android:text="@string/hello_"
         android:textAppearance="@style/hello_"
-        android:textSize="35sp"
+        android:textSize="45sp"
         android:textStyle="bold"
         android:translationY="-1.43sp"
         app:layout_constraintStart_toStartOf="parent"

@@ -15,7 +15,7 @@
     <style name="register">
         <item name="android:textSize">15sp</item>
         <item name="android:letterSpacing">0.05</item>
-        <item name="android:textColor">#FCD129</item>
+        <item name="android:textColor">@color/dark_yellow</item>
     </style>
     
     <style name="Swipe_view">

@@ -15,7 +15,8 @@
     <string name="Open_menu">Open</string>
     <string name="graph">Excellent !</string>
     <string name="graph_2"><b>You are very hardworking</b></string>
-
+    <string name="I_accept">I accept</string>
+    <string name="term"><u>terms &amp; condition</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_user01">Hello, User01!</string>
