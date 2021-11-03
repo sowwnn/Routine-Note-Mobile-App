@@ -10,15 +10,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -27,6 +35,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -55,6 +64,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     String[] tags = {"University","Business","Job"};
     AutoCompleteTextView txttag;
     ArrayAdapter<String> adapterTag;
+
+
+    EditText txtdeadline;
+    DatePickerDialog.OnDateSetListener setListener;
+
 
     //Intent
     ViewPager cardtask;
@@ -109,33 +123,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-        //BottomSheet
-        btnnewtask = findViewById(R.id.btnnewtask);
-        btnnewtask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetNewTask = new BottomSheetDialog(Dashboard.this,R.style.BottomSheetStyle);
-                View v = LayoutInflater.from(Dashboard.this).inflate(R.layout.bottom_sheet_new_task,findViewById(R.id.bottomsheet));
-                bottomSheetNewTask.setContentView(v);
-                bottomSheetNewTask.show();
-            }
-        });
-
-//        txttag = findViewById(R.id.txttag);
-//        adapterTag = new ArrayAdapter<String>(this,R.layout.dropdown_tag,tags );
-//        txttag.setAdapter(adapterTag);
-//        txttag.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String tag = parent.getItemAtPosition(position).toString();
-//                Toast.makeText(getApplicationContext(),"Tag: "+tag,Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-
-
         //CardItem click
         cardtask = findViewById(R.id.swiperview);
         cardtask.setOnTouchListener(new View.OnTouchListener() {
@@ -163,6 +150,33 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 startActivity(task);
             }
         });
+
+        //CardItem click
+
+        //BottomSheet
+        btnnewtask = findViewById(R.id.btnnewtask);
+        btnnewtask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetNewTask = new BottomSheetDialog(Dashboard.this,R.style.BottomSheetStyle);
+                View v = LayoutInflater.from(Dashboard.this).inflate(R.layout.bottom_sheet_new_task,findViewById(R.id.bottomsheet));
+                bottomSheetNewTask.setContentView(v);
+
+                Button btnsave = findViewById(R.id.btnsave);
+
+
+                bottomSheetNewTask.show();
+//                btnsave.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+//                        bottomSheetNewTask.dismiss();
+//                    }
+//                });
+            }
+        });
+
+        //BottomSheet
 }
 
     @Override
@@ -205,4 +219,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return true;
     }
+
+
 }

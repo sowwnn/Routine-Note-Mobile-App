@@ -49,15 +49,14 @@
 
     <CalendarView
         android:id="@+id/calendarView"
+        style="@android:style/Widget.Material.Light.CalendarView"
         android:layout_width="422dp"
         android:layout_height="304dp"
         android:layout_marginTop="12dp"
         android:contextClickable="true"
         android:dateTextAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layoutMode="opticalBounds"
+        android:layoutMode="clipBounds"
         android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:weekNumberColor="#000000"
-        android:weekSeparatorLineColor="@color/yellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"

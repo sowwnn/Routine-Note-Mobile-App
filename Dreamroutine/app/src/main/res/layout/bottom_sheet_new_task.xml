@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txttaskdeadline"
+        android:id="@+id/txtdeadline"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -66,10 +66,10 @@
     <!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <EditText
-        android:id="@+id/txtnote"
+        android:id="@+id/txttag"
         android:layout_width="324dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext_bottom"
         android:drawableStart="@drawable/ic_tag"
         android:drawablePadding="10dp"
@@ -80,10 +80,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txttaskdeadline" />
+        app:layout_constraintTop_toBottomOf="@+id/txtdeadline" />
 
     <EditText
-        android:id="@+id/txt"
+        android:id="@+id/txtnote"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -97,22 +97,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtnote" />
+        app:layout_constraintTop_toBottomOf="@+id/txttag" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnsave"
         android:layout_width="157dp"
         android:layout_height="48dp"
         android:layout_marginStart="96dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/rounded_button"
-        android:text="Done"
+        android:text="Save"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt" />
+        app:layout_constraintTop_toBottomOf="@+id/txtnote" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
