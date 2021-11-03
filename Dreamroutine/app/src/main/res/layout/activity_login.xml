@@ -132,7 +132,7 @@
 
     <EditText
         android:id="@+id/txtnewtask"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/rounded_edittext"
@@ -151,7 +151,7 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/rounded_edittext"
@@ -194,6 +194,7 @@
         android:text="@string/Forgot_pass"
         android:textColor="@color/gray"
         android:textStyle="bold"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toTopOf="parent" />
 

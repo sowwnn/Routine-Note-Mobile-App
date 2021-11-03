@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -18,12 +22,16 @@ public class CalendarActivity extends AppCompatActivity {
     ArrayList<Todo> arrayList;
     TodoAdapter todoAdapter;
     ImageButton btnback;
+    FloatingActionButton btnnewtask;
+    BottomSheetDialog bottomSheetNewTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+
+        //List task
         list = findViewById(R.id.lvcldTask);
 
         arrayList = Todo.initTodo();
@@ -38,6 +46,21 @@ public class CalendarActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent back = new Intent(CalendarActivity.this,Dashboard.class);
                 startActivity(back);
+            }
+        });
+
+
+        //BottomSheet
+        btnnewtask = findViewById(R.id.btnnewtask);
+        btnnewtask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetNewTask = new BottomSheetDialog(CalendarActivity.this, R.style.BottomSheetStyle);
+                View v = LayoutInflater.from(CalendarActivity.this).inflate(R.layout.bottom_sheet_new_task, findViewById(R.id.bottomsheet));
+                bottomSheetNewTask.setContentView(v);
+
+                Button btnsave = findViewById(R.id.btnsave);
+                bottomSheetNewTask.show();
             }
         });
     }

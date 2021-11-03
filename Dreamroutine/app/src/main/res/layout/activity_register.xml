@@ -4,89 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFEB3B"
+    android:background="@color/yellow"
     tools:context=".RegisterActivity">
 
     <View
         android:id="@+id/group_20"
-        android:layout_width="380dp"
-        android:layout_height="500dp"
+        android:layout_width="379dp"
+        android:layout_height="522dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/user_name"
+        android:drawableStart="@drawable/ic_outline_account_circle_24"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="@string/Username"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingStart="10dp"
+        android:drawablePadding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/group_20"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/group_20" />
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="250dp"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/name"
+        android:drawableStart="@drawable/ic_account"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingStart="10dp"
+        android:drawablePadding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/group_20"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="320dp"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/email"
+        android:drawableStart="@drawable/ic_mail"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Email"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:drawablePadding="10dp"
         android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/group_20"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <EditText
         android:id="@+id/register_password"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="390dp"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_edittext"
-        android:drawableStart="@drawable/password"
+        android:drawableStart="@drawable/ic_key"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="@string/Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/group_20"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/group_20"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -114,23 +119,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnregister"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="72dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/montserrat"
         android:text="Register"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="183dp"
+        android:layout_height="29dp"
         android:layout_marginStart="82dp"
         android:layout_marginTop="580dp"
         android:fontFamily="@font/montserrat"
@@ -140,10 +145,10 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
-        android:layout_marginTop="579dp"
+        android:layout_width="88dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="266dp"
+        android:layout_marginTop="580dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/Login"
         android:textAppearance="@style/register"
@@ -151,7 +156,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvlogin"
         android:layout_width="204dp"
         android:layout_height="59dp"
         android:layout_marginStart="40dp"
@@ -160,6 +165,7 @@
         android:text="Sign up"
         android:lineSpacingExtra="3sp"
         android:textSize="45sp"
+        android:clickable="true"
         android:textAppearance="@style/hello_"
         android:translationY="-1.43sp"
         android:textStyle="bold"
