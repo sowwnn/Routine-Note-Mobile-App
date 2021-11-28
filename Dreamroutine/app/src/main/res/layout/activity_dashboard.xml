@@ -84,6 +84,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtHelloUser" />
 
+
         <TextView
             android:id="@+id/txttodaytask"
             android:layout_width="181dp"
@@ -96,30 +97,45 @@
             android:text=" TODAY'S TASK"
             android:textColor="#152D6B"
             android:textStyle="bold"
+            android:layout_marginTop="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/swiperview" />
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/swiperview"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:clickable="true"
-            android:clipToPadding="false"
-            android:foregroundGravity="center"
-            android:overScrollMode="never"
-            android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@+id/txtcategori"
-            tools:ignore="SpeakableTextPresentCheck">
+            android:layout_width="409dp"
+            android:layout_height="167dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scrollbars="horizontal"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtcategori" />
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="408dp"
-                android:layout_height="337dp"
-                android:alpha="@integer/material_motion_duration_short_1">
+<!--        <androidx.viewpager.widget.ViewPager-->
+<!--            android:id="@+id/swiperview"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:clickable="true"-->
+<!--            android:clipToPadding="false"-->
+<!--            android:foregroundGravity="center"-->
+<!--            android:overScrollMode="never"-->
+<!--            android:visibility="visible"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtcategori"-->
+<!--            tools:ignore="SpeakableTextPresentCheck">-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/relativeLayout"-->
+<!--                android:layout_width="408dp"-->
+<!--                android:layout_height="337dp"-->
+<!--                android:alpha="@integer/material_motion_duration_short_1">-->
 
 
-            </RelativeLayout>
-        </androidx.viewpager.widget.ViewPager>
+<!--            </RelativeLayout>-->
+
+<!--        </androidx.viewpager.widget.ViewPager>-->
 
         <ListView
             android:id="@+id/todolist"

@@ -55,13 +55,15 @@ public class CalendarActivity extends AppCompatActivity {
         btnnewtask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetNewTask = new BottomSheetDialog(CalendarActivity.this, R.style.BottomSheetStyle);
-                View v = LayoutInflater.from(CalendarActivity.this).inflate(R.layout.bottom_sheet_new_task, findViewById(R.id.bottomsheet));
-                bottomSheetNewTask.setContentView(v);
-
-                Button btnsave = findViewById(R.id.btnsave);
-                bottomSheetNewTask.show();
+                showBottomSheetDialog();
             }
         });
+    }
+    private void showBottomSheetDialog(){
+        bottomSheetNewTask = new BottomSheetDialog(CalendarActivity.this, R.style.BottomSheetStyle);
+        View v = LayoutInflater.from(CalendarActivity.this).inflate(R.layout.bottom_sheet_new_task,findViewById(R.id.bottomsheet));
+        bottomSheetNewTask.setContentView(v);
+
+        bottomSheetNewTask.show();
     }
 }
