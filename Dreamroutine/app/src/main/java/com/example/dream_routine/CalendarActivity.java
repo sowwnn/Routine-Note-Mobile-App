@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,11 +26,20 @@ public class CalendarActivity extends AppCompatActivity {
     FloatingActionButton btnnewtask;
     BottomSheetDialog bottomSheetNewTask;
 
+    //var
+    TextView title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        //var
+        title = findViewById(R.id.txtcldTag);
+        title.setText(bundle.getString("job"));
 
         //List task
         list = findViewById(R.id.lvcldTask);

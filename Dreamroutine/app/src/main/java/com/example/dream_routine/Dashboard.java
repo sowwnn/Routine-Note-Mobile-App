@@ -20,6 +20,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecylerViewSwiper.OnItemClickListener {
 
     //sidebar
     DrawerLayout drawerLayout;
@@ -153,7 +154,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         RecyclerView recyclerView =findViewById(R.id.swiperview);
         recyclerView.setLayoutManager(layoutManager);
-        RecylerViewSwiper adapder = new RecylerViewSwiper( job, tasks,this);
+        RecylerViewSwiper adapder = new RecylerViewSwiper( job, tasks,this,this);
         recyclerView.setAdapter(adapder);
     }
 
@@ -168,6 +169,15 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
        tasks.add("7");
 
         initRecyclerView();
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+        job.get(position);
+        Intent intent = new Intent(Dashboard.this,CalendarActivity.class);
+        intent.putExtra("job",job.get(position));
+        startActivity(intent);
     }
 }
 

@@ -1,6 +1,7 @@
 package com.example.dream_routine;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +19,16 @@ public class RecylerViewSwiper extends RecyclerView.Adapter<RecylerViewSwiper.My
     //var
     private ArrayList<String> job = new ArrayList<>();
     private ArrayList<String> tasks = new ArrayList<>();
+
     private Context mContext;
+    private OnItemClickListener itemlistener;
 
 
-    public RecylerViewSwiper(ArrayList<String> job, ArrayList<String> tasks, Context mContext) {
+    public RecylerViewSwiper(ArrayList<String> job, ArrayList<String> tasks, Context mContext, OnItemClickListener itemlistener) {
         this.job = job;
         this.tasks = tasks;
         this.mContext = mContext;
+        this.itemlistener = itemlistener;
     }
 
     @NonNull
@@ -33,7 +37,7 @@ public class RecylerViewSwiper extends RecyclerView.Adapter<RecylerViewSwiper.My
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item,parent,false);
 
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, itemlistener);
     }
 
     @Override
@@ -48,16 +52,32 @@ public class RecylerViewSwiper extends RecyclerView.Adapter<RecylerViewSwiper.My
         return job.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView txtjob,txttask;
         Button card;
+        OnItemClickListener onItemClickListener;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
+
             txtjob = itemView.findViewById(R.id.txtjob);
             txttask = itemView.findViewById(R.id.txttask);
+
+            this.onItemClickListener = onItemClickListener;
+            itemView.setOnClickListener(this);
 //            card = itemView.findViewById(R.id.cardbg);
         }
+
+        @Override
+        public void onClick(View view) {
+            onItemClickListener.onItemClick(getAdapterPosition());
+        }
+    }
+
+
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
     }
 
 }
