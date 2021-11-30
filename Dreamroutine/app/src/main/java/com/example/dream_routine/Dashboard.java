@@ -1,51 +1,44 @@
 package com.example.dream_routine;
 
-import static com.example.dream_routine.RecylerViewSwiper.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecylerViewSwiper.OnItemClickListener {
 
@@ -71,12 +64,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     //Bottom Sheet
     FloatingActionButton btnnewtask;
     BottomSheetDialog bottomSheetNewTask;
-    String[] tags = {"University","Business","Job"};
-    AutoCompleteTextView txttag;
-    ArrayAdapter<String> adapterTag;
-    EditText txtdeadline;
-    Calendar calendar;
-    DatePickerDialog.OnDateSetListener setListener;
+
+    ArrayList<String> drdtags = new ArrayList<String>();
+    AutoCompleteTextView drdtextInputLayout;
+    ArrayAdapter<String> drdadapterItems;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -111,6 +102,17 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         //BottomSheet
         btnnewtask = findViewById(R.id.btnnewtask);
+//
+//        btnnewtask.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Bottom_Sheet bottom_sheet = new Bottom_Sheet();
+//                bottom_sheet.show(getSupportFragmentManager(),"Bottom_Sheet");
+//            }
+//        });
+        drdtags.add("Machine Learning");
+        drdtags.add("Android");
+        drdtags.add("Database Adv");
         btnnewtask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,13 +138,33 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return true;
     }
+
+
     public void showBottomSheetDialog(){
         bottomSheetNewTask = new BottomSheetDialog(Dashboard.this, R.style.BottomSheetStyle);
         View v = LayoutInflater.from(Dashboard.this).inflate(R.layout.bottom_sheet_new_task,findViewById(R.id.bottomsheet));
         bottomSheetNewTask.setContentView(v);
-        EditText txttaskname = findViewById(R.id.txttaskname);
+
+//        var
+        Button btnsave = bottomSheetNewTask.findViewById(R.id.btnsave);
+        EditText txttaskname = bottomSheetNewTask.findViewById(R.id.txttaskname);
+        EditText txtdeadline = bottomSheetNewTask.findViewById(R.id.txtdeadline);
+        Spinner sptag = bottomSheetNewTask.findViewById(R.id.sptag);
+        EditText txttag = bottomSheetNewTask.findViewById(R.id.txttag);
+        EditText txtnote = bottomSheetNewTask.findViewById(R.id.txtnote);
 
         bottomSheetNewTask.show();
+
+        sptag.setAdapter(new ArrayAdapter<String>(Dashboard.this, android.R.layout.simple_dropdown_item_1line, drdtags));
+        String tag = sptag.getSelectedItem().toString();
+
+        btnsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
+                bottomSheetNewTask.dismiss();
+            }
+        });
 
     }
 

@@ -27,48 +27,76 @@
 
     <EditText
         android:id="@+id/txtdeadline"
-        android:layout_width="324dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="323dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_edittext_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txttaskname"
         android:drawableStart="@drawable/ic_calendar"
         android:drawablePadding="10dp"
         android:fontFamily="@font/montserrat"
         android:hint="DD/MM/YY"
         android:inputType="date"
         android:paddingStart="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txttaskname"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-       />
+        />
 
-    <!--    <com.google.android.material.textfield.TextInputLayout-->
-    <!--        android:id="@+id/textInputLayout"-->
-    <!--        style="@style/DropMenu"-->
-    <!--        android:layout_width="323dp"-->
-    <!--        android:layout_height="54dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:background="@drawable/rounded_edittext"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/txttaskdeadline">-->
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/txtdeadline"-->
+<!--        android:layout_width="323dp"-->
+<!--        android:layout_height="54dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/rounded_edittext"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txttaskname"-->
+<!--        >-->
 
-    <!--        <AutoCompleteTextView-->
-    <!--            android:id="@+id/txttag"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:drawableStart="@drawable/ic_tag"-->
-    <!--            android:drawablePadding="10dp"-->
-    <!--            android:fontFamily="@font/montserrat"-->
-    <!--            android:hint="Tag"-->
-    <!--            android:inputType="none"-->
-    <!--            android:paddingStart="15dp" />-->
-    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+<!--        <EditText-->
+<!--            android:id="@+id/date_picker_actions"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/rounded_edittext_bottom"-->
+<!--            android:clickable="false"-->
+<!--            android:cursorVisible="false"-->
+<!--            android:drawableStart="@drawable/ic_calendar"-->
+<!--            android:drawablePadding="10dp"-->
+<!--            android:focusable="false"-->
+<!--            android:focusableInTouchMode="false"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:hint="DD/MM/YY"-->
+<!--            android:inputType="date"-->
+<!--            android:paddingStart="15dp"-->
+<!--            app:layout_constraintHorizontal_bias="0.505"-->
+<!--            />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/textInputLayout"-->
+<!--            style="@style/DropMenu"-->
+<!--            android:layout_width="323dp"-->
+<!--            android:layout_height="54dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@drawable/rounded_edittext"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtdeadline"-->
+<!--            >-->
+
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/txttag"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:drawableStart="@drawable/ic_tag"-->
+<!--                android:drawablePadding="10dp"-->
+<!--                android:fontFamily="@font/montserrat"-->
+<!--                android:inputType="none"-->
+<!--                android:hint="Tag"-->
+<!--                android:paddingStart="15dp"-->
+<!--                tools:ignore="TouchTargetSizeCheck" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
     <EditText
         android:id="@+id/txttag"
@@ -76,16 +104,29 @@
         android:layout_height="60dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext_bottom"
+
         android:drawableStart="@drawable/ic_tag"
         android:drawablePadding="10dp"
         android:fontFamily="@font/montserrat"
-        android:hint="Tag"
-        android:inputType="textLongMessage"
         android:paddingStart="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtdeadline" />
+        app:layout_constraintTop_toBottomOf="@+id/txtdeadline"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Spinner
+        android:id="@+id/sptag"
+        android:layout_width="286dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="12dp"
+        android:background="#00FFFFFF"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtdeadline"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/txtnote"
