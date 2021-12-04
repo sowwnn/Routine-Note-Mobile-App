@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/yellow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellow"
     tools:context=".LoginActivity">
 
 
@@ -66,9 +66,9 @@
         android:layout_marginTop="32dp"
         android:clickable="true"
         android:letterSpacing="0.1"
-        android:textStyle="bold"
         android:text="@string/register"
         android:textAppearance="@style/register"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toBottomOf="@+id/super_fb" />
 
@@ -92,10 +92,10 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/rounded_small_btn"
+        android:clickable="true"
         android:minWidth="48dp"
         android:minHeight="48dp"
         app:layout_constraintEnd_toStartOf="@+id/super_fb"
-        android:clickable="true"
         app:layout_constraintTop_toBottomOf="@+id/group_24"
         app:srcCompat="@drawable/super_g"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -107,9 +107,9 @@
         android:layout_marginStart="164dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_small_btn"
+        android:clickable="true"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        android:clickable="true"
         app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toBottomOf="@+id/group_24"
         app:srcCompat="@drawable/path"
@@ -122,32 +122,31 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_small_btn"
+        android:clickable="true"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        android:clickable="true"
         app:layout_constraintStart_toEndOf="@+id/super_fb"
         app:layout_constraintTop_toBottomOf="@+id/group_24"
         app:srcCompat="@drawable/shape"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/txtnewtask"
+        android:id="@+id/edtusername"
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/rounded_edittext"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="10dp"
         android:fontFamily="@font/montserrat"
+        android:hint="Username"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingStart="15dp"
-        android:drawablePadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/group_20"
-        android:drawableStart="@drawable/ic_account"
-        android:hint="Username"
-        />
+        app:layout_constraintTop_toTopOf="@+id/group_20" />
 
     <EditText
         android:id="@+id/password"
@@ -155,10 +154,10 @@
         android:layout_height="60dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:fontFamily="@font/montserrat"
         android:drawableStart="@drawable/ic_key"
         android:drawablePadding="10dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
         android:hint="@string/Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -166,7 +165,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtnewtask" />
+        app:layout_constraintTop_toBottomOf="@+id/edtusername" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -189,12 +188,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
         android:layout_marginTop="352dp"
+        android:clickable="true"
         android:fontFamily="@font/montserrat"
         android:letterSpacing="0.1"
+        android:minHeight="48dp"
         android:text="@string/Forgot_pass"
         android:textColor="@color/gray"
         android:textStyle="bold"
-        android:clickable="true"
         app:layout_constraintStart_toStartOf="@+id/group_20"
         app:layout_constraintTop_toTopOf="parent" />
 

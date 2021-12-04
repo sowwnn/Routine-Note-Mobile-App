@@ -114,7 +114,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnRegister"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -157,12 +157,12 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="56dp"
         android:fontFamily="@font/montserrat"
-        android:text="Sign up"
         android:lineSpacingExtra="3sp"
-        android:textSize="45sp"
+        android:text="Sign up"
         android:textAppearance="@style/hello_"
-        android:translationY="-1.43sp"
+        android:textSize="45sp"
         android:textStyle="bold"
+        android:translationY="-1.43sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
