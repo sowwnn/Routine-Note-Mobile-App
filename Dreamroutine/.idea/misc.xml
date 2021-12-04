@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_dropdown_item_1line.xml" value="0.30885416666666665" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/drawable/rounded_button.xml" value="0.19074074074074074" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/drawable/rounded_edittext.xml" value="0.19074074074074074" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/drawable/rounded_view.xml" value="0.19074074074074074" />
@@ -20,18 +21,23 @@
         <entry key="app/src/main/res/drawable/rounded_bottomsheet.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.31296296296296294" />
         <entry key="app/src/main/res/drawable/rounded_button2.xml" value="0.31296296296296294" />
+        <entry key="app/src/main/res/drawable/rounded_carditem.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/rounded_edittext_bottom.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/rounded_small_btn.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/rounded_view.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.33046232842183676" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3215794408403646" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15020263424518743" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.30885416666666665" />
-        <entry key="app/src/main/res/layout/bottom_sheet_new_task.xml" value="0.1816123188405797" />
-        <entry key="app/src/main/res/layout/card_item.xml" value="0.4325528562608135" />
+        <entry key="app/src/main/res/layout/activity_test.xml" value="0.27589743589743587" />
+        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.1734375" />
+        <entry key="app/src/main/res/layout/bottom_sheet_new_task.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/card_item.xml" value="0.27586206896551724" />
+        <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.11296296296296296" />
         <entry key="app/src/main/res/layout/dropdown_tag.xml" value="0.15020263424518743" />
+        <entry key="app/src/main/res/layout/dropdown_tags.xml" value="0.17083333333333334" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_new_task.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/tag_item.xml" value="0.15020263424518743" />

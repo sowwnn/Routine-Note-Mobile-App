@@ -8,40 +8,63 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dreamroutine">
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".test"
+            android:exported="true" />
+>>>>>>> d5133b42cf9a9d0f0710a542d78d89777b190771
         <activity
             android:name=".RegisterActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+<<<<<<< HEAD
             <!--            <intent-filter>-->
             <!--            <action android:name="android.intent.action.MAIN" />-->
 
             <!--            <category android:name="android.intent.category.LAUNCHER" />-->
             <!--        </intent-filter>-->
+=======
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+>>>>>>> d5133b42cf9a9d0f0710a542d78d89777b190771
         </activity>
         <activity
             android:name=".CalendarActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+<<<<<<< HEAD
             <!--             <intent-filter> -->
             <!--             <action android:name="android.intent.action.MAIN" /> -->
             <!--             <category android:name="android.intent.category.LAUNCHER" /> -->
             <!--             </intent-filter> -->
+=======
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+>>>>>>> d5133b42cf9a9d0f0710a542d78d89777b190771
         </activity>
         <activity
             android:name=".Dashboard"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
