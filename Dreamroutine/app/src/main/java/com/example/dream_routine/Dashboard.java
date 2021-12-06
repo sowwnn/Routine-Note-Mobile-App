@@ -10,35 +10,34 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecylerViewSwiper.OnItemClickListener {
 
@@ -66,8 +65,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     BottomSheetDialog bottomSheetNewTask;
 
     ArrayList<String> drdtags = new ArrayList<String>();
-    AutoCompleteTextView drdtextInputLayout;
-    ArrayAdapter<String> drdadapterItems;
 
     DataHelper db;
     int id;
@@ -92,6 +89,12 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         Intent intent = getIntent();
         id = intent.getIntExtra("Id", 0);
+
+        User user = db.getUser(id);
+
+        TextView txthello = findViewById(R.id.txtHelloUser);
+        txthello.setText("Hello! " + user.getUserName());
+
         //sidebar
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -109,17 +112,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         //BottomSheet
         btnnewtask = findViewById(R.id.btnnewtask);
-//
-//        btnnewtask.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Bottom_Sheet bottom_sheet = new Bottom_Sheet();
-//                bottom_sheet.show(getSupportFragmentManager(),"Bottom_Sheet");
-//            }
-//        });
+
         drdtags.add("Machine Learning");
         drdtags.add("Android");
         drdtags.add("Database Adv");
+        drdtags.add("");
         btnnewtask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,8 +159,31 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         bottomSheetNewTask.show();
 
-        sptag.setAdapter(new ArrayAdapter<String>(Dashboard.this, android.R.layout.simple_dropdown_item_1line, drdtags));
-        tag = sptag.getSelectedItem().toString();
+        ArrayAdapter<String> tagArrayAdapter = new ArrayAdapter<String>(Dashboard.this, android.R.layout.simple_dropdown_item_1line, drdtags){
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                return super.getDropDownView(position, convertView, parent);
+            }
+
+            public int getCount() {
+                return drdtags.size() - 1;
+            }
+        };
+        sptag.setAdapter(tagArrayAdapter);
+        sptag.setSelection(tagArrayAdapter.getCount());
+        sptag.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tag = sptag.getSelectedItem().toString();
+                txttag.setText(tag);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,10 +191,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 String taskname = txttaskname.getText().toString();
                 String taskdeadline = txtdeadline.getText().toString();
                 String tasknote = txtnote.getText().toString();
+                String tasktag = txttag.getText().toString();
                 String userid = String.valueOf(id);
-                Task task = new Task(taskname, tag, taskdeadline, tasknote, userid);
+                Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid);
                 db.insertTask(task);
-                Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tasktag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
                 bottomSheetNewTask.dismiss();
             }
         });
@@ -212,6 +233,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         job.get(position);
         Intent intent = new Intent(Dashboard.this,CalendarActivity.class);
         intent.putExtra("job",job.get(position));
+        intent.putExtra("Id",id);
         startActivity(intent);
     }
 }

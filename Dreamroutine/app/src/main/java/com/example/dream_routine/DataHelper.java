@@ -37,7 +37,7 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String KEY_USER_ID = "User_id";
 
     private static final String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER_NAME + " TEXT NOT NULL UNIQUE,"
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER_NAME + " TEXT NOT NULL UNIQUE, "
             + KEY_NAME + " TEXT," + KEY_PASS + " VARCHAR(12)," + KEY_EMAIL + " TEXT )";
 
     private static final String CREATE_TASK_TABLE = "CREATE TABLE " + TABLE_TASK + "("

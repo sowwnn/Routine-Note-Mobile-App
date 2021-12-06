@@ -2,11 +2,12 @@ package com.example.dream_routine;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,11 +34,18 @@ public class CalendarActivity extends AppCompatActivity {
     //var
     TextView title;
     ArrayList<String> drdtags = new ArrayList<String>();
+    String tag;
+
+    //Database
+    DataHelper db;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        db = new DataHelper(getApplicationContext());
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -45,6 +53,7 @@ public class CalendarActivity extends AppCompatActivity {
         //var
         title = findViewById(R.id.txtcldTag);
         title.setText(bundle.getString("job"));
+        id = intent.getIntExtra("Id", 0);
 
         //List task
         list = findViewById(R.id.lvcldTask);
@@ -94,13 +103,44 @@ public class CalendarActivity extends AppCompatActivity {
 
         bottomSheetNewTask.show();
 
-        sptag.setAdapter(new ArrayAdapter<String>(CalendarActivity.this, android.R.layout.simple_dropdown_item_1line, drdtags));
-        String tag = sptag.getSelectedItem().toString();
+        ArrayAdapter<String> tagArrayAdapter = new ArrayAdapter<String>(CalendarActivity.this, android.R.layout.simple_dropdown_item_1line, drdtags){
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                return super.getDropDownView(position, convertView, parent);
+            }
+
+            public int getCount() {
+                return drdtags.size() - 1;
+            }
+        };
+
+        sptag.setAdapter(tagArrayAdapter);
+        sptag.setSelection(tagArrayAdapter.getCount());
+        sptag.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tag = sptag.getSelectedItem().toString();
+                txttag.setText(tag);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
+
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
+                String taskname = txttaskname.getText().toString();
+                String taskdeadline = txtdeadline.getText().toString();
+                String tasknote = txtnote.getText().toString();
+                String tasktag = txttag.getText().toString();
+                String userid = String.valueOf(id);
+                Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid);
+                db.insertTask(task);
+                Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tasktag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
                 bottomSheetNewTask.dismiss();
             }
         });

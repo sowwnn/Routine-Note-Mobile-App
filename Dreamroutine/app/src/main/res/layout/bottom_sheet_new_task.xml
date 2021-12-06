@@ -104,11 +104,11 @@
         android:layout_height="60dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext_bottom"
-        android:clickable="false"
-        android:focusable="false"
+        android:defaultFocusHighlightEnabled="true"
         android:drawableStart="@drawable/ic_tag"
         android:drawablePadding="10dp"
         android:fontFamily="@font/montserrat"
+        android:hint="Tag"
         android:paddingStart="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -116,15 +116,18 @@
         app:layout_constraintTop_toBottomOf="@+id/txtdeadline"
         tools:ignore="SpeakableTextPresentCheck" />
 
+
     <Spinner
         android:id="@+id/sptag"
-        android:layout_width="286dp"
-        android:layout_height="61dp"
+        android:layout_width="60dp"
+        android:layout_height="59dp"
         android:layout_marginTop="12dp"
-        android:background="#00FFFFFF"
+        android:dropDownSelector="@drawable/drd"
         android:fontFamily="@font/montserrat"
+        android:pointerIcon="horizontal_double_arrow"
+        android:textColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintHorizontal_bias="0.877"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtdeadline"
         tools:ignore="SpeakableTextPresentCheck" />
