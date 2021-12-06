@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(valid){
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     Intent login = new Intent(LoginActivity.this, Dashboard.class);
+                    int id = db.getUserID(username, password);
+                    login.putExtra("Id",id);
                     startActivity(login);
                 }
                 else{

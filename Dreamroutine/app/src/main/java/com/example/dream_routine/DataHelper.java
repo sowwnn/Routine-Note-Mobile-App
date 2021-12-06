@@ -37,7 +37,7 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String KEY_USER_ID = "User_id";
 
     private static final String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER_NAME + " TEXT,"
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER_NAME + " TEXT NOT NULL UNIQUE,"
             + KEY_NAME + " TEXT," + KEY_PASS + " VARCHAR(12)," + KEY_EMAIL + " TEXT )";
 
     private static final String CREATE_TASK_TABLE = "CREATE TABLE " + TABLE_TASK + "("
@@ -211,14 +211,19 @@ public class DataHelper extends SQLiteOpenHelper {
         database.delete(TABLE_TASK, KEY_ID + " = " + _id, null);
     }
 
-    public boolean CheckValid (String username, String password){
-        SQLiteDatabase MyDB =this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from tbl_user where User_name = \"" + username + "\" and Password = \""+ password +"\"", null);
-        if (cursor.getCount()>0)
+    public boolean CheckValid(String username, String password) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from tbl_user where User_name = \"" + username + "\" and Password = \"" + password + "\"", null);
+        if (cursor.getCount() > 0)
             return true;
         else
             return false;
     }
 
-
+    public int getUserID(String username, String password) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select _id from tbl_user where User_name = \"" + username + "\" and Password = \"" + password + "\"", null);
+        cursor.moveToFirst();
+        return cursor.getInt(0);
+    }
 }

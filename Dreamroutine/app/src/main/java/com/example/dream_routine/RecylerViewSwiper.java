@@ -24,6 +24,8 @@ public class RecylerViewSwiper extends RecyclerView.Adapter<RecylerViewSwiper.My
     private OnItemClickListener itemlistener;
 
 
+
+
     public RecylerViewSwiper(ArrayList<String> job, ArrayList<String> tasks, Context mContext, OnItemClickListener itemlistener) {
         this.job = job;
         this.tasks = tasks;

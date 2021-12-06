@@ -69,6 +69,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     AutoCompleteTextView drdtextInputLayout;
     ArrayAdapter<String> drdadapterItems;
 
+    DataHelper db;
+    int id;
+    String tag;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -84,7 +88,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         list.setAdapter(todoAdapter);
 
+        db = new DataHelper(getApplicationContext());
 
+        Intent intent = getIntent();
+        id = intent.getIntExtra("Id", 0);
         //sidebar
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -156,11 +163,17 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         bottomSheetNewTask.show();
 
         sptag.setAdapter(new ArrayAdapter<String>(Dashboard.this, android.R.layout.simple_dropdown_item_1line, drdtags));
-        String tag = sptag.getSelectedItem().toString();
+        tag = sptag.getSelectedItem().toString();
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String taskname = txttaskname.getText().toString();
+                String taskdeadline = txtdeadline.getText().toString();
+                String tasknote = txtnote.getText().toString();
+                String userid = String.valueOf(id);
+                Task task = new Task(taskname, tag, taskdeadline, tasknote, userid);
+                db.insertTask(task);
                 Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
                 bottomSheetNewTask.dismiss();
             }

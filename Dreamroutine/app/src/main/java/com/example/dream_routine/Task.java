@@ -22,6 +22,14 @@ public class Task {
 
     }
 
+    public Task(String taskName, String taskTag, String taskDeadline, String taskNote, String userId){
+        this.taskName = taskName;
+        this.taskTag = taskTag;
+        this.taskDeadline = taskDeadline;
+        this.taskNote = taskNote;
+        this.userId = userId;
+    }
+
     public String getTaskName() {
         return taskName;
     }

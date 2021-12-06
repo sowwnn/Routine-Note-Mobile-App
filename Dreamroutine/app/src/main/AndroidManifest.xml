@@ -8,9 +8,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dreamroutine">
-        <activity
-            android:name=".test"
-            android:exported="true" />
+
         <activity
             android:name=".RegisterActivity"
             android:exported="true"
