@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class CalendarActivity extends AppCompatActivity {
     // Listtodo
     ListView list;
-    ArrayList<Todo> arrayList;
+    ArrayList<String> arrayList;
     TodoAdapter todoAdapter;
     ImageButton btnback;
     FloatingActionButton btnnewtask;
@@ -58,7 +58,7 @@ public class CalendarActivity extends AppCompatActivity {
         //List task
         list = findViewById(R.id.lvcldTask);
 
-        arrayList = Todo.initTodo();
+        arrayList = Todo.initTodo(db);
 
         todoAdapter = new TodoAdapter(CalendarActivity.this, R.layout.todo_item, arrayList);
 

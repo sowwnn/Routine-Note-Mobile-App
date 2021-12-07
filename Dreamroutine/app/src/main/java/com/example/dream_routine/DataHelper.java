@@ -188,6 +188,33 @@ public class DataHelper extends SQLiteOpenHelper {
         // tra ve danh sach cac task
         return arrTask;
     }
+    @SuppressLint("Range")
+    public ArrayList<String> getAllTaskName() {
+        ArrayList<String> arrTask = new ArrayList<String>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK;
+
+        LogUtil.LogD(LOG, selectQuerry);
+
+        Cursor c = database.rawQuery(selectQuerry, null);
+
+        if (c != null) {
+            c.moveToFirst();
+
+            do {
+                // dong goi thong tin vao 1 doi tuong task
+                String task;
+
+                task = (c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+
+                arrTask.add(task);
+            } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+
+        // tra ve danh sach cac task
+        return arrTask;
+    }
 
     public void updateTask(Task task, int _id) {
         // cap quyen ghi cho bien database

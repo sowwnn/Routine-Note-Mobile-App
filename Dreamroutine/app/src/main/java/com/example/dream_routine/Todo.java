@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Todo {
     String task;
 
+
     public Todo(String task) {
         this.task = task;
     }
@@ -16,12 +17,11 @@ public class Todo {
     public void setTask(String task) {
         this.task = task;
     }
-    public static ArrayList initTodo(){
-        ArrayList<Todo> arrayList = new ArrayList<>();
-        arrayList.add(new Todo("Supervised Learning"));
-        arrayList.add(new Todo("Unsupervised Learning"));
-        arrayList.add(new Todo("Machine Learning"));
-        arrayList.add(new Todo("Deep Learning"));
+
+    public static ArrayList<String> initTodo(DataHelper db){
+
+        ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList = db.getAllTaskName();
         return arrayList;
     }
 }

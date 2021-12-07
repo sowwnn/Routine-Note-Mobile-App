@@ -3,6 +3,7 @@ package com.example.dream_routine;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -52,13 +56,14 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     //RecyclerView
 
     private static final String TAG = "Dashboard";
-    private ArrayList<String> job = new ArrayList<>();
-    private ArrayList<String> tasks = new ArrayList<>();
+    ArrayList<String> job = new ArrayList<>();
+    ArrayList<Integer> tasks = new ArrayList<>();
 
     // Listtodo
     ListView list;
-    ArrayList<Todo> arrayList;
+    ArrayList<String> arrayList;
     TodoAdapter todoAdapter;
+    CheckBox cbtask;
 
     //Bottom Sheet
     FloatingActionButton btnnewtask;
@@ -77,13 +82,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        list = findViewById(R.id.todolist);
-
-        arrayList = Todo.initTodo();
-
-        todoAdapter = new TodoAdapter(Dashboard.this, R.layout.todo_item, arrayList);
-
-        list.setAdapter(todoAdapter);
+        //Get extend
 
         db = new DataHelper(getApplicationContext());
 
@@ -94,6 +93,34 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         TextView txthello = findViewById(R.id.txtHelloUser);
         txthello.setText("Hello! " + user.getUserName());
+
+
+        //list
+        list = findViewById(R.id.todolist);
+
+        refreshTask();
+
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final int item = i;
+
+                new AlertDialog.Builder(Dashboard.this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Are you sure ?")
+                        .setMessage("Do you want to delete this item")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                arrayList.remove(item);
+                            }
+                        })
+                        .setNegativeButton("No",null)
+                        .show();
+                return true;
+
+            }
+        });
 
         //sidebar
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -113,10 +140,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         //BottomSheet
         btnnewtask = findViewById(R.id.btnnewtask);
 
-        drdtags.add("Machine Learning");
-        drdtags.add("Android");
-        drdtags.add("Database Adv");
-        drdtags.add("");
         btnnewtask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +150,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         //Recycler View
         getCardData();
+
     }
 
     @Override
@@ -196,6 +220,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid);
                 db.insertTask(task);
                 Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tasktag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
+                refreshTask();
+                getCardData();
                 bottomSheetNewTask.dismiss();
             }
         });
@@ -215,14 +241,23 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     }
 
     private void getCardData(){
-       job.add("Machine Learning");
-       job.add("Android");
-       job.add("Database Adv");
+       ArrayList<Task> alltask = db.getAllTask();
+       for (int i = 0; i < alltask.size(); i++){
+           String t_task = alltask.get(i).getTaskTag();
+           if(job.contains(t_task) == false)
+           {
+               job.add(t_task);
+               drdtags.add(t_task);
+               tasks.add(1);
 
-
-       tasks.add("10");
-       tasks.add("5");
-       tasks.add("7");
+           }
+           else{
+               int index = job.indexOf(t_task);
+               int val = tasks.get(index);
+               tasks.set(index, val+1);
+           }
+       }
+        drdtags.add("");
 
         initRecyclerView();
     }
@@ -236,6 +271,17 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         intent.putExtra("Id",id);
         startActivity(intent);
     }
+
+    public void refreshTask(){
+        arrayList = Todo.initTodo(db);
+
+        todoAdapter = new TodoAdapter(Dashboard.this, R.layout.todo_item, arrayList);
+
+        list.setAdapter(todoAdapter);
+
+        cbtask = findViewById(R.id.cbtask);
+    }
+
 }
 
 
