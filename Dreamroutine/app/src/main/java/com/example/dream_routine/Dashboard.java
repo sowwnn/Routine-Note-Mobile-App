@@ -115,7 +115,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                                 arrayList.remove(item);
                             }
                         })
-                        .setNegativeButton("No",null)
+                        .setNegativeButton("No", null)
                         .show();
                 return true;
 
@@ -169,9 +169,9 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     }
 
 
-    public void showBottomSheetDialog(){
+    public void showBottomSheetDialog() {
         bottomSheetNewTask = new BottomSheetDialog(Dashboard.this, R.style.BottomSheetStyle);
-        View v = LayoutInflater.from(Dashboard.this).inflate(R.layout.bottom_sheet_new_task,findViewById(R.id.bottomsheet));
+        View v = LayoutInflater.from(Dashboard.this).inflate(R.layout.bottom_sheet_new_task, findViewById(R.id.bottomsheet));
         bottomSheetNewTask.setContentView(v);
 
 //        var
@@ -184,7 +184,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         bottomSheetNewTask.show();
 
-        ArrayAdapter<String> tagArrayAdapter = new ArrayAdapter<String>(Dashboard.this, android.R.layout.simple_dropdown_item_1line, drdtags){
+        ArrayAdapter<String> tagArrayAdapter = new ArrayAdapter<String>(Dashboard.this, android.R.layout.simple_dropdown_item_1line, drdtags) {
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 return super.getDropDownView(position, convertView, parent);
             }
@@ -219,11 +219,15 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 String tasktag = txttag.getText().toString();
                 String userid = String.valueOf(id);
                 Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid);
-                db.insertTask(task);
-                Toast.makeText(getApplicationContext(),"New task: "+ txttaskname.getText()+" \nin: "+tasktag+" \ndeadline: "+txtdeadline.getText(),Toast.LENGTH_LONG).show();
-                refreshTask();
-                getCardData();
-                bottomSheetNewTask.dismiss();
+                if (taskname.equals("") || taskdeadline.equals("") || tasktag.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Can't be null", Toast.LENGTH_LONG).show();
+                } else {
+                    db.insertTask(task);
+                    Toast.makeText(getApplicationContext(), "New task: " + txttaskname.getText() + " \nin: " + tasktag + " \ndeadline: " + txtdeadline.getText(), Toast.LENGTH_LONG).show();
+                    refreshTask();
+                    getCardData();
+                    bottomSheetNewTask.dismiss();
+                }
             }
         });
 
@@ -231,34 +235,34 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
 
     //Recycler View
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        RecyclerView recyclerView =findViewById(R.id.swiperview);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerView = findViewById(R.id.swiperview);
         recyclerView.setLayoutManager(layoutManager);
-        RecylerViewSwiper adapder = new RecylerViewSwiper( job, tasks,this,this);
+        RecylerViewSwiper adapder = new RecylerViewSwiper(job, tasks, this, this);
         recyclerView.setAdapter(adapder);
     }
 
-    private void getCardData(){
-       ArrayList<Task> alltask = db.getAllTask();
-       tasks = new ArrayList<>();
-       for (int i = 0; i < alltask.size(); i++){
-           String t_task = alltask.get(i).getTaskTag();
-           if(job.contains(t_task) == false)
-           {
-               job.add(t_task);
-               drdtags.add(t_task);
-               tasks.add(1);
-
-           }
-           else{
-               int index = job.indexOf(t_task);
-               int val = tasks.get(index);
-               tasks.set(index, val+1);
-           }
-       }
+    private void getCardData() {
+        job = new ArrayList<>();
+        ArrayList<Task> alltask = db.getAllTask();
+        drdtags = new ArrayList<>();
+//       tasks = new ArrayList<>();
+        for (int i = 0; i < alltask.size(); i++) {
+            String t_task = alltask.get(i).getTaskTag();
+            if (job.contains(t_task) == false) {
+                job.add(t_task);
+                drdtags.add(t_task);
+                tasks.add(1);
+            }
+//           else{
+////               int index = job.indexOf(t_task);
+////               int val = tasks.get(index);
+////               tasks.set(index, val+1);
+//           }
+        }
         drdtags.add("");
         initRecyclerView();
     }
@@ -267,13 +271,13 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public void onItemClick(int position) {
         job.get(position);
-        Intent intent = new Intent(Dashboard.this,CalendarActivity.class);
-        intent.putExtra("job",job.get(position));
-        intent.putExtra("Id",id);
+        Intent intent = new Intent(Dashboard.this, CalendarActivity.class);
+        intent.putExtra("job", job.get(position));
+        intent.putExtra("Id", id);
         startActivity(intent);
     }
 
-    public void refreshTask(){
+    public void refreshTask() {
         arrayList = Todo.initTodo(db);
 
         todoAdapter = new TodoAdapter(Dashboard.this, R.layout.todo_item, arrayList);
