@@ -149,6 +149,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         });
 
         //Recycler View
+
         getCardData();
 
     }
@@ -242,6 +243,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     private void getCardData(){
        ArrayList<Task> alltask = db.getAllTask();
+       tasks = new ArrayList<>();
        for (int i = 0; i < alltask.size(); i++){
            String t_task = alltask.get(i).getTaskTag();
            if(job.contains(t_task) == false)
@@ -258,7 +260,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
            }
        }
         drdtags.add("");
-
         initRecyclerView();
     }
 
