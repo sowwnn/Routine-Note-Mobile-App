@@ -41,7 +41,10 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecylerViewSwiper.OnItemClickListener {
 
@@ -64,6 +67,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     ArrayList<String> arrayList;
     TodoAdapter todoAdapter;
     CheckBox cbtask;
+
+    String date;
 
     //Bottom Sheet
     FloatingActionButton btnnewtask;
@@ -94,6 +99,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         TextView txthello = findViewById(R.id.txtHelloUser);
         txthello.setText("Hello! " + user.getUserName());
 
+
+        //date
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date today = new Date();
+        date = formatter.format(today);
 
         //list
         list = findViewById(R.id.todolist);
@@ -246,24 +256,9 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     }
 
     private void getCardData() {
-        job = new ArrayList<>();
-        ArrayList<Task> alltask = db.getAllTask();
-        drdtags = new ArrayList<>();
-//       tasks = new ArrayList<>();
-        for (int i = 0; i < alltask.size(); i++) {
-            String t_task = alltask.get(i).getTaskTag();
-            if (job.contains(t_task) == false) {
-                job.add(t_task);
-                drdtags.add(t_task);
-                tasks.add(1);
-            }
-//           else{
-////               int index = job.indexOf(t_task);
-////               int val = tasks.get(index);
-////               tasks.set(index, val+1);
-//           }
-        }
-        drdtags.add("");
+        HashMap<String,Integer> table = db.getTaskTag(id);
+        job = new ArrayList<>(table.keySet());
+        tasks = new ArrayList<>(table.values());
         initRecyclerView();
     }
 
@@ -278,13 +273,16 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     }
 
     public void refreshTask() {
-        arrayList = Todo.initTodo(db);
+        arrayList = Todo.initTodo(db,date,id);
 
         todoAdapter = new TodoAdapter(Dashboard.this, R.layout.todo_item, arrayList);
 
         list.setAdapter(todoAdapter);
 
         cbtask = findViewById(R.id.cbtask);
+
+        drdtags = job;
+        drdtags.add("");
     }
 
 }

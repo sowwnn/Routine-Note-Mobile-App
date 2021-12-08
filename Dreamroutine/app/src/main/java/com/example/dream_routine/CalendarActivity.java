@@ -49,16 +49,19 @@ public class CalendarActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        tag = bundle.getString("job");
 
         //var
+        String date = "08/12/2021";
+
         title = findViewById(R.id.txtcldTag);
-        title.setText(bundle.getString("job"));
+        title.setText(tag);
         id = intent.getIntExtra("Id", 0);
 
         //List task
         list = findViewById(R.id.lvcldTask);
 
-        arrayList = Todo.initTodo(db);
+        arrayList = Todo.initByTag(db,date,tag,id);
 
         todoAdapter = new TodoAdapter(CalendarActivity.this, R.layout.todo_item, arrayList);
 

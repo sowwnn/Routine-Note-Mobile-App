@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/txtcldTag"
-        android:layout_width="227dp"
-        android:layout_height="92dp"
+        android:layout_width="231dp"
+        android:layout_height="75dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:letterSpacing="0.12"

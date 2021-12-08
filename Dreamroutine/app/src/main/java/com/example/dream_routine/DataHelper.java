@@ -7,9 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class DataHelper extends SQLiteOpenHelper {
 
@@ -106,21 +106,18 @@ public class DataHelper extends SQLiteOpenHelper {
 
         // doi tuong luu cac hang cua bang truy van
         Cursor c = database.rawQuery(selectQuery, null);
-
+        User user = new User();
         // chuyen con tro den dong dau tien neu du lieu tra ve tu CSDL khong phai null
-        if (c != null) {
+        if ((c != null) && (c.getCount() >0)){
             c.moveToFirst();
+
+            user.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
+            user.setUserName(c.getString(c.getColumnIndex(KEY_USER_NAME)));
+            user.setName(c.getString(c.getColumnIndex(KEY_NAME)));
+            user.setUserPass(c.getString(c.getColumnIndex(KEY_PASS)));
+            user.setUserEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
         }
 
-        // dong goi thong tin vao 1 doi tuong user
-        User user = new User();
-        user.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
-        user.setUserName(c.getString(c.getColumnIndex(KEY_USER_NAME)));
-        user.setName(c.getString(c.getColumnIndex(KEY_NAME)));
-        user.setUserPass(c.getString(c.getColumnIndex(KEY_PASS)));
-        user.setUserEmail(c.getString(c.getColumnIndex(KEY_EMAIL)));
-
-        // tra ve 1 user
         return user;
     }
 
@@ -199,7 +196,7 @@ public class DataHelper extends SQLiteOpenHelper {
 
         Cursor c = database.rawQuery(selectQuerry, null);
 
-        if (c != null) {
+        if ((c != null) && (c.getCount() > 0)) {
             c.moveToFirst();
 
             do {
@@ -210,6 +207,71 @@ public class DataHelper extends SQLiteOpenHelper {
 
                 arrTask.add(task);
             } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+        else
+        {
+            arrTask.add("");
+        }
+
+        // tra ve danh sach cac task
+        return arrTask;
+    }
+    @SuppressLint("Range")
+    public ArrayList<String> getTaskTodo(String date,int u_id) {
+        ArrayList<String> arrTask = new ArrayList<String>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\"AND User_id = "+ u_id;
+
+        LogUtil.LogD(LOG, selectQuerry);
+
+        Cursor c = database.rawQuery(selectQuerry, null);
+
+        if ((c != null) && (c.getCount() > 0)) {
+            c.moveToFirst();
+
+            do {
+                // dong goi thong tin vao 1 doi tuong task
+                String task;
+
+                task = (c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+
+                arrTask.add(task);
+            } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+        else
+        {
+            arrTask.add("");
+        }
+
+        // tra ve danh sach cac task
+        return arrTask;
+    }
+    @SuppressLint("Range")
+    public ArrayList<String> getTaskTodoByTag(String date,String tag,int u_id) {
+        ArrayList<String> arrTask = new ArrayList<String>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\" AND Task_tag = \""+ tag+"\" "+"AND User_id = "+ u_id;
+
+        LogUtil.LogD(LOG, selectQuerry);
+
+        Cursor c = database.rawQuery(selectQuerry, null);
+
+        if ((c != null) && (c.getCount() > 0)) {
+            c.moveToFirst();
+            do {
+                // dong goi thong tin vao 1 doi tuong task
+                String task;
+
+                task = (c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+
+                arrTask.add(task);
+            } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+        else
+        {
+           arrTask.add("");
         }
 
         // tra ve danh sach cac task
@@ -246,11 +308,40 @@ public class DataHelper extends SQLiteOpenHelper {
         else
             return false;
     }
+    public boolean CheckUser(String username){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from tbl_user where User_name = \"" + username +"\"" , null);
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
 
     public int getUserID(String username, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select _id from tbl_user where User_name = \"" + username + "\" and Password = \"" + password + "\"", null);
         cursor.moveToFirst();
         return cursor.getInt(0);
+    }
+
+    public HashMap<String, Integer> getTaskTag(int u_id) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        HashMap<String,Integer> tag = new HashMap<>();
+
+        Cursor cursor = MyDB.rawQuery("SELECT Task_tag, count(*) FROM tbl_task WHERE User_id = "+u_id+" GROUP by Task_tag", null);
+        if ((cursor != null) && (cursor.getCount() > 0)) {
+            cursor.moveToFirst();
+
+            do {
+                String job = (cursor.getString(0));
+                int tasks = (cursor.getInt(1));
+
+                tag.put(job,tasks);
+
+            } while (cursor.moveToNext()); // chuyen toi dong tiep theo
+        }
+        else
+            tag.put("null",0);
+        return tag;
     }
 }

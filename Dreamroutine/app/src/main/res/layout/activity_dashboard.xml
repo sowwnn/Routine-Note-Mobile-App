@@ -52,8 +52,8 @@
 
         <TextView
             android:id="@+id/txtHelloUser"
-            android:layout_width="294dp"
-            android:layout_height="43dp"
+            android:layout_width="341dp"
+            android:layout_height="83dp"
             android:layout_marginStart="35dp"
             android:layout_marginTop="50dp"
             android:fontFamily="@font/montserrat"
@@ -66,12 +66,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/txtcategori"
             android:layout_width="181dp"
             android:layout_height="24dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="4dp"
             android:alpha="@integer/material_motion_duration_medium_1"
             android:fontFamily="@font/montserrat"
             android:letterSpacing="0.13"
@@ -83,7 +84,6 @@
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtHelloUser" />
-
 
         <TextView
             android:id="@+id/txttodaytask"
