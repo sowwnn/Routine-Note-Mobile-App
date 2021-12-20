@@ -13,10 +13,12 @@
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_main2.xml" value="0.1793478260869565" />
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_register.xml" value="0.2726449275362319" />
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/dialog_bg.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_account.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_drop_down.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_bell.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/ic_drop_down.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_tag.xml" value="0.32" />
         <entry key="app/src/main/res/drawable/menu.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/rounded_bottomsheet.xml" value="0.2675925925925926" />
@@ -29,13 +31,14 @@
         <entry key="app/src/main/res/drawable/rounded_view.xml" value="0.2675925925925926" />
         <entry key="app/src/main/res/drawable/spinnerbg.xml" value="0.325" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_calendar1.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.33046232842183676" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3215794408403646" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15020263424518743" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.27589743589743587" />
         <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.1734375" />
-        <entry key="app/src/main/res/layout/bottom_sheet_new_task.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/bottom_sheet_new_task.xml" value="0.4951923076923077" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.27586206896551724" />
         <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.11296296296296296" />
         <entry key="app/src/main/res/layout/dropdown_tag.xml" value="0.15020263424518743" />

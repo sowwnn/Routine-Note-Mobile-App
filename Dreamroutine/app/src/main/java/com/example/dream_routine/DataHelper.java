@@ -341,7 +341,53 @@ public class DataHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext()); // chuyen toi dong tiep theo
         }
         else
-            tag.put("null",0);
+            tag.put("empty",0);
         return tag;
+    }
+
+    public ArrayList<String> getAllDay(int u_id,String tag){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ArrayList<String> allday= new ArrayList<String>();
+        Cursor cursor = myDB.rawQuery("SELECT Deadline FROM tbl_task WHERE Task_tag = \""+ tag+"\" AND User_id =\""+u_id+"\"" ,null);
+        if ((cursor != null) && (cursor.getCount() > 0)) {
+            cursor.moveToFirst();
+
+            do {
+                String date = (cursor.getString(0));
+                allday.add(date);
+
+            } while (cursor.moveToNext()); // chuyen toi dong tiep theo
+        }
+        return allday;
+    }
+    @SuppressLint("Range")
+    public ArrayList<String> getDayTaskByTag(String date, String tag, int u_id) {
+        ArrayList<String> arrTask = new ArrayList<String>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\" AND Task_tag = \""+ tag+"\" "+"AND User_id = "+ u_id;
+
+        LogUtil.LogD(LOG, selectQuerry);
+
+        Cursor c = database.rawQuery(selectQuerry, null);
+
+        if ((c != null) && (c.getCount() > 0)) {
+            c.moveToFirst();
+            do {
+                // dong goi thong tin vao 1 doi tuong task
+                String task;
+
+                task = (c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+
+                arrTask.add(task);
+            } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+        else
+        {
+            arrTask.add("");
+        }
+
+        // tra ve danh sach cac task
+        return arrTask;
     }
 }

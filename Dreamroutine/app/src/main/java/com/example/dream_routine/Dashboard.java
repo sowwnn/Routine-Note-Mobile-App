@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +28,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -43,6 +47,7 @@ import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -80,6 +85,11 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     int id;
     String tag;
 
+    DatePickerDialog.OnDateSetListener setListener;
+    Calendar calendar = Calendar.getInstance();
+    final int year = calendar.get(Calendar.YEAR);
+    final int month = calendar.get(Calendar.MONTH);
+    final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -101,6 +111,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
 
         //date
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date today = new Date();
         date = formatter.format(today);
@@ -180,6 +191,8 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
 
     public void showBottomSheetDialog() {
+
+        refreshTask();
         bottomSheetNewTask = new BottomSheetDialog(Dashboard.this, R.style.BottomSheetStyle);
         View v = LayoutInflater.from(Dashboard.this).inflate(R.layout.bottom_sheet_new_task, findViewById(R.id.bottomsheet));
         bottomSheetNewTask.setContentView(v);
@@ -189,6 +202,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         EditText txttaskname = bottomSheetNewTask.findViewById(R.id.txttaskname);
         EditText txtdeadline = bottomSheetNewTask.findViewById(R.id.txtdeadline);
         Spinner sptag = bottomSheetNewTask.findViewById(R.id.sptag);
+        ImageButton btncalendar = bottomSheetNewTask.findViewById(R.id.btncalendar);
         EditText txttag = bottomSheetNewTask.findViewById(R.id.txttag);
         EditText txtnote = bottomSheetNewTask.findViewById(R.id.txtnote);
 
@@ -218,6 +232,25 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             }
 
         });
+
+
+        btncalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Dashboard.this, android.R.style.Theme_Holo_Light_DarkActionBar,setListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT ));
+                datePickerDialog.show();
+            }
+        });
+        setListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month+1;
+                String date = day+"/"+month+"/"+year;
+                txtdeadline.setText(date);
+            }
+        };
+
 
 
         btnsave.setOnClickListener(new View.OnClickListener() {

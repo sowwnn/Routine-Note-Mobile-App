@@ -37,4 +37,10 @@ public class Todo {
         arrayList = db.getTaskTodoByTag(date,tag,u_id);
         return arrayList;
     }
+    public static ArrayList<String> initDayByTag(DataHelper db,String date,String tag,int u_id){
+
+        ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList = db.getDayTaskByTag(date,tag,u_id);
+        return arrayList;
+    }
 }

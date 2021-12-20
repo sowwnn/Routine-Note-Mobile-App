@@ -9,6 +9,7 @@
     android:fitsSystemWindows="true"
     android:visibility="visible"
     tools:context=".Dashboard"
+    android:dialogCornerRadius = "10dp"
     tools:openDrawer="start">
 
 
