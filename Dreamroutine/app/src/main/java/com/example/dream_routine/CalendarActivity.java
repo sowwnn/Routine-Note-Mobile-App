@@ -125,7 +125,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         //BottomSheet
 
-        refreshTask();
+        refreshdayList(date);
         btnnewtask = findViewById(R.id.btnnewtask);
         btnnewtask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +136,7 @@ public class CalendarActivity extends AppCompatActivity {
     }
     public void showBottomSheetDialog() {
 
-        refreshTask();
+        refreshdayList(date);
         bottomSheetNewTask = new BottomSheetDialog(CalendarActivity.this, R.style.BottomSheetStyle);
         View v = LayoutInflater.from(CalendarActivity.this).inflate(R.layout.bottom_sheet_new_task, findViewById(R.id.bottomsheet));
         bottomSheetNewTask.setContentView(v);
@@ -247,15 +247,15 @@ public class CalendarActivity extends AppCompatActivity {
         list.setAdapter(todoAdapter);
 
     }
-    public void refreshTask() {
-        HashMap<String,Integer> table = db.getTaskTag(id);
-        ArrayList<String >job = new ArrayList<>(table.keySet());
-        ArrayList<Integer>tasks = new ArrayList<>(table.values());
-
-        drdtags = new ArrayList<String>();
-        drdtags = job;
-        drdtags.add("");
-    }
+//    public void refreshTask() {
+//        HashMap<String,Integer> table = db.getTaskTag(id);
+//        ArrayList<String >job = new ArrayList<>(table.keySet());
+//        ArrayList<Integer>tasks = new ArrayList<>(table.values());
+//
+//        drdtags = new ArrayList<String>();
+//        drdtags = job;
+//        drdtags.add("");
+//    }
 
     public void calendar_event(){
         ArrayList<String> allday = db.getAllDay(id,tag);

@@ -221,7 +221,7 @@ public class DataHelper extends SQLiteOpenHelper {
         ArrayList<String> arrTask = new ArrayList<String>();
 
         SQLiteDatabase database = this.getReadableDatabase();
-        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\"AND User_id = "+ u_id;
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\" AND User_id = "+ u_id;
 
         LogUtil.LogD(LOG, selectQuerry);
 
@@ -239,10 +239,10 @@ public class DataHelper extends SQLiteOpenHelper {
                 arrTask.add(task);
             } while (c.moveToNext()); // chuyen toi dong tiep theo
         }
-        else
-        {
-            arrTask.add("");
-        }
+//        else
+//        {
+//            arrTask.add("");
+//        }
 
         // tra ve danh sach cac task
         return arrTask;
@@ -382,10 +382,10 @@ public class DataHelper extends SQLiteOpenHelper {
                 arrTask.add(task);
             } while (c.moveToNext()); // chuyen toi dong tiep theo
         }
-        else
-        {
-            arrTask.add("");
-        }
+//        else
+//        {
+//            arrTask.add("");
+//        }
 
         // tra ve danh sach cac task
         return arrTask;

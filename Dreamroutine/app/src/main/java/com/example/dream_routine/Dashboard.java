@@ -243,10 +243,17 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             }
         });
         setListener = new DatePickerDialog.OnDateSetListener() {
+            String smonth;
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
-                String date = day+"/"+month+"/"+year;
+                if(month < 10){
+                   smonth = "0"+month;
+                }
+                else{
+                    smonth = ""+month;
+                }
+                String date = day+"/"+smonth+"/"+year;
                 txtdeadline.setText(date);
             }
         };
