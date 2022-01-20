@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtdeadline" />
 
     <EditText
-        android:id="@+id/txtnote"
+        android:id="@+id/edti_txtnote"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -128,6 +128,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtnote" />
+        app:layout_constraintTop_toBottomOf="@+id/edti_txtnote" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

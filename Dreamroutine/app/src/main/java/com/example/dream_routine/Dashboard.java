@@ -3,7 +3,6 @@ package com.example.dream_routine;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
@@ -14,10 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,14 +24,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,14 +40,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Timer;
 
 public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecylerViewSwiper.OnItemClickListener ,TodoRAdapter.OnTaskListener{
 
@@ -192,7 +183,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         Spinner sptag = bottomSheetNewTask.findViewById(R.id.sptag);
         ImageButton btncalendar = bottomSheetNewTask.findViewById(R.id.btncalendar);
         EditText txttag = bottomSheetNewTask.findViewById(R.id.txttag);
-        EditText txtnote = bottomSheetNewTask.findViewById(R.id.txtnote);
+        EditText txtnote = bottomSheetNewTask.findViewById(R.id.edti_txtnote);
 
         bottomSheetNewTask.show();
 
@@ -307,17 +298,24 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public void refreshTask() {
         arrayFList  = Todo.initFTodo(db,date,id);
 
-        todoAdapter = new TodoRAdapter(Dashboard.this, arrayFList,this,db);
+        if(arrayFList != null) {
+            todoAdapter = new TodoRAdapter(Dashboard.this, arrayFList, this, db);
 
-        list.setAdapter(todoAdapter);
-        list.setLayoutManager(new LinearLayoutManager(this));
+            list.setAdapter(todoAdapter);
+            list.setLayoutManager(new LinearLayoutManager(this));
 
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(list);
-
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(list);
+        }
         cbtask = findViewById(R.id.cbtask);
 
+        HashMap<String,Integer> table = db.getTaskTag(id);
+        ArrayList<String >job = new ArrayList<>(table.keySet());
+        ArrayList<Integer>tasks = new ArrayList<>(table.values());
+
+        drdtags = new ArrayList<String>();
         drdtags = job;
         drdtags.add("");
+
     }
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
         @Override
@@ -354,7 +352,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public void onTaskClick(int position) {
         Intent intent = new Intent(this,EditTask.class);
-        intent.putExtra("task_id",arrayFList.get(position)._id);
+        Bundle bundle = new Bundle();
+        bundle.putInt("task_id",arrayFList.get(position)._id);
+        bundle.putInt("u_id",id);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

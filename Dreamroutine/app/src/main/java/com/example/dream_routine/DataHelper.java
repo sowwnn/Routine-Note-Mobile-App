@@ -196,24 +196,57 @@ public class DataHelper extends SQLiteOpenHelper {
         return arrTask;
     }
 
-
-
     @SuppressLint("Range")
-    public ArrayList<Task> getAllTodoTask(String date,int u_id) {
-        ArrayList<Task> arrTask = new ArrayList<Task>();
+    public Task getTaskbyID(int _id,int u_id) {
 
+        Task task = null;
         SQLiteDatabase database = this.getReadableDatabase();
-            String selectQuerry = "SELECT * FROM " + TABLE_TASK
-                                +" WHERE Deadline = \""+date
-                                +"\" AND User_id = "+ u_id +" AND Trash = "+1+ "";
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK
+                +" WHERE _id = \""+_id
+                +"\" AND User_id = "+ u_id;
 
-            LogUtil.LogD(LOG, selectQuerry);
+        LogUtil.LogD(LOG, selectQuerry);
 
         Cursor c = database.rawQuery(selectQuerry, null);
 
         if (c != null) {
             c.moveToFirst();
 
+            do {
+                // dong goi thong tin vao 1 doi tuong task
+                task = new Task();
+
+                task.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
+                task.setTaskName(c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+                task.setTaskTag(c.getString(c.getColumnIndex(KEY_TASK_TAG)));
+                task.setTaskDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                task.setTaskNote(c.getString(c.getColumnIndex(KEY_TASK_NOTE)));
+                task.setUserId(c.getString(c.getColumnIndex(KEY_USER_ID)));
+                task.setTaskDone(c.getInt(c.getColumnIndex(KEY_DONE)));
+                task.setTaskTrash(c.getInt(c.getColumnIndex(KEY_TRASH)));
+
+            } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+
+        // tra ve danh sach cac task
+        return task;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Task> getAllTodoTask(String date,int u_id) {
+        ArrayList<Task> arrTask = new ArrayList<Task>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK
+                                +" WHERE Deadline = \""+date
+                                +"\" AND User_id = "+ u_id +" AND Trash = "+1;
+
+        LogUtil.LogD(LOG, selectQuerry);
+
+        Cursor c = database.rawQuery(selectQuerry, null);
+
+        if ((c != null) && (c.getCount() > 0)) {
+            c.moveToFirst();
             do {
                 // dong goi thong tin vao 1 doi tuong task
                 Task task = new Task();
@@ -420,7 +453,7 @@ public class DataHelper extends SQLiteOpenHelper {
     public ArrayList<String> getAllDay(int u_id,String tag){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ArrayList<String> allday= new ArrayList<String>();
-        Cursor cursor = myDB.rawQuery("SELECT Deadline FROM tbl_task WHERE Task_tag = \""+ tag+"\" AND User_id =\""+u_id+"\"" ,null);
+        Cursor cursor = myDB.rawQuery("SELECT Deadline FROM tbl_task WHERE Task_tag = \""+ tag+"\" AND User_id =\""+u_id+"\" AND Trash = 1" ,null);
         if ((cursor != null) && (cursor.getCount() > 0)) {
             cursor.moveToFirst();
 

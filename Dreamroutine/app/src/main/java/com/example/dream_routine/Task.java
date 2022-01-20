@@ -19,6 +19,8 @@ public class Task {
 //        this.taskNote = taskNote;
 //        this.userId = userId;
 //    }
+    public Task(){
+    }
 
     public Task(String taskName, String taskTag, String taskDeadline, String taskNote, String userId, int _id, int taskDone, int taskTrash) {
         this.taskName = taskName;
@@ -55,9 +57,6 @@ public class Task {
         this.taskTrash = taskTrash;
     }
 
-    public Task(){
-
-    }
 
     public Task(String taskName, String taskTag, String taskDeadline, String taskNote, String userId){
         this.taskName = taskName;

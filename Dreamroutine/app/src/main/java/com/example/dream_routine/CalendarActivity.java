@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,12 +18,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +31,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -164,7 +159,7 @@ public class CalendarActivity extends AppCompatActivity implements TodoRAdapter.
         Spinner sptag = bottomSheetNewTask.findViewById(R.id.sptag);
         ImageButton btncalendar = bottomSheetNewTask.findViewById(R.id.btncalendar);
         EditText txttag = bottomSheetNewTask.findViewById(R.id.txttag);
-        EditText txtnote = bottomSheetNewTask.findViewById(R.id.txtnote);
+        EditText txtnote = bottomSheetNewTask.findViewById(R.id.edti_txtnote);
 
         bottomSheetNewTask.show();
 
