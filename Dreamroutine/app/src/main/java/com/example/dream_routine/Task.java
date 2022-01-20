@@ -9,13 +9,50 @@ public class Task {
     public String taskNote;
     public String userId;
     public int _id;
+    public int taskDone;
+    public int taskTrash;
 
-    public Task(int _id, String taskName, String taskTag, String taskDeadline, String taskNote, String userId){
+//    public Task(int _id, String taskName, String taskTag, String taskDeadline, String taskNote, String userId){
+//        this.taskName = taskName;
+//        this.taskTag = taskTag;
+//        this.taskDeadline = taskDeadline;
+//        this.taskNote = taskNote;
+//        this.userId = userId;
+//    }
+
+    public Task(String taskName, String taskTag, String taskDeadline, String taskNote, String userId, int _id, int taskDone, int taskTrash) {
         this.taskName = taskName;
         this.taskTag = taskTag;
         this.taskDeadline = taskDeadline;
         this.taskNote = taskNote;
         this.userId = userId;
+        this.taskDone = taskDone;
+        this.taskTrash = taskTrash;
+    }
+    public Task(String taskName, String taskTag, String taskDeadline, String taskNote, String userId, int taskDone, int taskTrash) {
+        this.taskName = taskName;
+        this.taskTag = taskTag;
+        this.taskDeadline = taskDeadline;
+        this.taskNote = taskNote;
+        this.userId = userId;
+        this.taskDone = taskDone;
+        this.taskTrash = taskTrash;
+    }
+
+    public int getTaskDone() {
+        return taskDone;
+    }
+
+    public void setTaskDone(int taskDone) {
+        this.taskDone = taskDone;
+    }
+
+    public int getTaskTrash() {
+        return taskTrash;
+    }
+
+    public void setTaskTrash(int taskTrash) {
+        this.taskTrash = taskTrash;
     }
 
     public Task(){

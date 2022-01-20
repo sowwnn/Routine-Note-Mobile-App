@@ -14,7 +14,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/root_view"
         android:layout_width="400dp"
         android:layout_height="343dp"
         android:layout_marginTop="4dp"
@@ -138,7 +138,7 @@
 
 <!--        </androidx.viewpager.widget.ViewPager>-->
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/todolist"
             android:layout_width="413dp"
             android:layout_height="314dp"
@@ -147,7 +147,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txttodaytask"
             android:divider="@null">
 
-        </ListView>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -19,12 +19,14 @@ public class Todo {
         this.task = task;
     }
 
-    public static ArrayList<String> initTodo(DataHelper db,String date,int u_id){
+    public static ArrayList<Task> initFTodo(DataHelper db,String date,int u_id){
 
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList = db.getTaskTodo(date,u_id);
+        ArrayList<Task> arrayList = new ArrayList<Task>();
+        arrayList = db.getAllTodoTask(date,u_id);
         return arrayList;
     }
+
+
     public static ArrayList<String> initAll(DataHelper db){
 
         ArrayList<String> arrayList = new ArrayList<String>();
@@ -43,4 +45,5 @@ public class Todo {
         arrayList = db.getDayTaskByTag(date,tag,u_id);
         return arrayList;
     }
+
 }

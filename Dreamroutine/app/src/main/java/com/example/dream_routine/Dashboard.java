@@ -5,8 +5,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +44,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
 
@@ -50,8 +53,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Timer;
 
-public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecylerViewSwiper.OnItemClickListener {
+public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecylerViewSwiper.OnItemClickListener ,TodoRAdapter.OnTaskListener{
 
     //sidebar
     DrawerLayout drawerLayout;
@@ -68,12 +72,15 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     ArrayList<Integer> tasks = new ArrayList<>();
 
     // Listtodo
-    ListView list;
+    RecyclerView list;
     ArrayList<String> arrayList;
-    TodoAdapter todoAdapter;
+    ArrayList<Task> arrayFList;
+    TodoRAdapter todoAdapter;
     CheckBox cbtask;
 
     String date;
+
+    ConstraintLayout rootView;
 
     //Bottom Sheet
     FloatingActionButton btnnewtask;
@@ -117,31 +124,12 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         date = formatter.format(today);
 
         //list
+        rootView = findViewById(R.id.root_view);
         list = findViewById(R.id.todolist);
 
         refreshTask();
 
-        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                final int item = i;
 
-                new AlertDialog.Builder(Dashboard.this)
-                        .setIcon(android.R.drawable.ic_delete)
-                        .setTitle("Are you sure ?")
-                        .setMessage("Do you want to delete this item")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                arrayList.remove(item);
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                return true;
-
-            }
-        });
 
         //sidebar
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -268,7 +256,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 String tasknote = txtnote.getText().toString();
                 String tasktag = txttag.getText().toString();
                 String userid = String.valueOf(id);
-                Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid);
+                Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid,0,0);
                 if (taskname.equals("") || taskdeadline.equals("") || tasktag.equals("")) {
                     Toast.makeText(getApplicationContext(), "Can't be null", Toast.LENGTH_LONG).show();
                 } else {
@@ -312,19 +300,70 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         startActivity(intent);
     }
 
-    public void refreshTask() {
-        arrayList = Todo.initTodo(db,date,id);
 
-        todoAdapter = new TodoAdapter(Dashboard.this, R.layout.todo_item, arrayList);
+
+
+    ///Task
+    public void refreshTask() {
+        arrayFList  = Todo.initFTodo(db,date,id);
+
+        todoAdapter = new TodoRAdapter(Dashboard.this, arrayFList,this);
 
         list.setAdapter(todoAdapter);
+        list.setLayoutManager(new LinearLayoutManager(this));
+
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(list);
 
         cbtask = findViewById(R.id.cbtask);
 
         drdtags = job;
         drdtags.add("");
     }
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
 
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int index = viewHolder.getAdapterPosition();
+
+            Task temp = arrayFList.get(index);
+            Toast.makeText(getApplicationContext(),temp.getTaskName()+"---"+temp.get_id(), Toast.LENGTH_LONG).show();
+            db.moveToTrash(temp.get_id());
+            arrayFList.remove(viewHolder.getAdapterPosition());
+            todoAdapter.notifyDataSetChanged();
+
+            Snackbar snackbar = Snackbar.make(rootView, "Removed",Snackbar.LENGTH_LONG);
+            snackbar.setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    temp.setTaskTrash(0);
+                    db.updateTask(temp, temp.get_id());
+                    refreshTask();
+                }
+            });
+
+
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+        }
+//        public void undoItem ( int index){
+//            arrayList.add(arrayList.get(index));
+//            todoAdapter.notifyItemInserted(index);
+//        }
+
+
+
+    };
+
+    @Override
+    public void onTaskClick(int position) {
+        Intent intent = new Intent(this,EditTask.class);
+        intent.putExtra("task_id",arrayFList.get(position)._id);
+        startActivity(intent);
+    }
 }
 
 

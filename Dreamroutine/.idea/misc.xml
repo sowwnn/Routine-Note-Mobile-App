@@ -14,6 +14,7 @@
         <entry key="..\:/Dream-routine/Dreamroutine/app/src/main/res/layout/activity_register.xml" value="0.2726449275362319" />
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/dialog_bg.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/ic__delete_sweep.xml" value="0.28888888888888886" />
         <entry key="app/src/main/res/drawable/ic_account.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.325" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_drop_down.xml" value="0.325" />
@@ -33,6 +34,7 @@
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_calendar1.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.33046232842183676" />
+        <entry key="app/src/main/res/layout/activity_edit_task.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3215794408403646" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15020263424518743" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.30885416666666665" />
@@ -46,7 +48,7 @@
         <entry key="app/src/main/res/layout/fragment_bottom_sheet_new_task.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/tag_item.xml" value="0.15020263424518743" />
-        <entry key="app/src/main/res/layout/todo_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/todo_item.xml" value="0.33" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.25" />
       </map>

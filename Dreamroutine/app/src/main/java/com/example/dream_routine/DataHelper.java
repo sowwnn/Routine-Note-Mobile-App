@@ -35,6 +35,9 @@ public class DataHelper extends SQLiteOpenHelper {
     private static final String KEY_DEADLINE = "Deadline";
     private static final String KEY_TASK_NOTE = "Task_note";
     private static final String KEY_USER_ID = "User_id";
+    private static final String KEY_DONE = "Done";
+    private static final String KEY_TRASH = "Trash";
+
 
     private static final String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER_NAME + " TEXT NOT NULL UNIQUE, "
@@ -42,7 +45,10 @@ public class DataHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TASK_TABLE = "CREATE TABLE " + TABLE_TASK + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TASK_NAME + " TEXT,"
-            + KEY_TASK_TAG + " TEXT," + KEY_DEADLINE + " DATE," + KEY_TASK_NOTE + " TEXT," + KEY_USER_ID + " INTERGER )";
+            + KEY_TASK_TAG + " TEXT," + KEY_DEADLINE + " DATE," + KEY_TASK_NOTE + " TEXT,"
+            + KEY_USER_ID + " INTERGER, "
+            + KEY_DONE + " INTERGER, "
+            + KEY_TRASH + " INTERGER )";
 
     public DataHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -66,7 +72,7 @@ public class DataHelper extends SQLiteOpenHelper {
         // cap quyen ghi CSDL cho bien database
         SQLiteDatabase database = this.getWritableDatabase();
 
-        // dat cac gia tri cua student can them cho bien values
+        // dat cac gia tri cua user can them cho bien values
         ContentValues values = new ContentValues();
         values.put(KEY_USER_NAME, user.getUserName());
         values.put(KEY_NAME, user.getName());
@@ -81,13 +87,15 @@ public class DataHelper extends SQLiteOpenHelper {
         // cap quyen ghi CSDL cho bien database
         SQLiteDatabase database = this.getWritableDatabase();
 
-        // dat cac gia tri cua student can them cho bien values
+        // dat cac gia tri cua t can them cho bien values
         ContentValues values = new ContentValues();
         values.put(KEY_TASK_NAME, task.getTaskName());
         values.put(KEY_TASK_TAG, task.getTaskTag());
         values.put(KEY_DEADLINE, task.getTaskDeadline());
         values.put(KEY_TASK_NOTE, task.getTaskNote());
         values.put(KEY_USER_ID, task.getUserId());
+        values.put(KEY_DONE, task.getUserId());
+        values.put(KEY_TRASH, task.getUserId());
 
         // them vao CSDL
         database.insert(TABLE_TASK, null, values);
@@ -148,6 +156,8 @@ public class DataHelper extends SQLiteOpenHelper {
         task.setTaskDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
         task.setTaskNote(c.getString(c.getColumnIndex(KEY_TASK_NOTE)));
         task.setUserId(c.getString(c.getColumnIndex(KEY_USER_ID)));
+        task.setTaskDone(c.getInt(c.getColumnIndex(KEY_DONE)));
+        task.setTaskTrash(c.getInt(c.getColumnIndex(KEY_TRASH)));
 
         // tra ve 1 task
         return task;
@@ -185,6 +195,46 @@ public class DataHelper extends SQLiteOpenHelper {
         // tra ve danh sach cac task
         return arrTask;
     }
+
+
+
+    @SuppressLint("Range")
+    public ArrayList<Task> getAllTodoTask(String date,int u_id) {
+        ArrayList<Task> arrTask = new ArrayList<Task>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+            String selectQuerry = "SELECT * FROM " + TABLE_TASK
+                                +" WHERE Deadline = \""+date
+                                +"\" AND User_id = "+ u_id +" AND Trash = "+1+ "";
+
+            LogUtil.LogD(LOG, selectQuerry);
+
+        Cursor c = database.rawQuery(selectQuerry, null);
+
+        if (c != null) {
+            c.moveToFirst();
+
+            do {
+                // dong goi thong tin vao 1 doi tuong task
+                Task task = new Task();
+                
+                task.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
+                task.setTaskName(c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+                task.setTaskTag(c.getString(c.getColumnIndex(KEY_TASK_TAG)));
+                task.setTaskDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                task.setTaskNote(c.getString(c.getColumnIndex(KEY_TASK_NOTE)));
+                task.setUserId(c.getString(c.getColumnIndex(KEY_USER_ID)));
+                task.setTaskDone(c.getInt(c.getColumnIndex(KEY_DONE)));
+                task.setTaskTrash(c.getInt(c.getColumnIndex(KEY_TRASH)));
+
+                arrTask.add(task);
+            } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+
+        // tra ve danh sach cac task
+        return arrTask;
+    }
+
     @SuppressLint("Range")
     public ArrayList<String> getAllTaskName() {
         ArrayList<String> arrTask = new ArrayList<String>();
@@ -278,6 +328,13 @@ public class DataHelper extends SQLiteOpenHelper {
         return arrTask;
     }
 
+
+    public void moveToTrash(int _id){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String sql = "UPDATE tbl_task SET Trash = 0 WHERE _id = "+_id+"";
+        myDB.execSQL(sql);
+    }
+
     public void updateTask(Task task, int _id) {
         // cap quyen ghi cho bien database
         SQLiteDatabase database = this.getWritableDatabase();
@@ -288,6 +345,8 @@ public class DataHelper extends SQLiteOpenHelper {
         values.put(KEY_DEADLINE, task.getTaskDeadline());
         values.put(KEY_TASK_NOTE, task.getTaskNote());
         values.put(KEY_USER_ID, task.getUserId());
+        values.put(KEY_DONE, task.getTaskDone());
+        values.put(KEY_TRASH, task.getTaskTrash());
 
         // sua task co ID = _id theo cac thong tin trong bien values
         database.update(TABLE_TASK, values, KEY_ID + " = " + _id, null);
@@ -390,4 +449,5 @@ public class DataHelper extends SQLiteOpenHelper {
         // tra ve danh sach cac task
         return arrTask;
     }
+
 }
