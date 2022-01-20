@@ -46,4 +46,9 @@ public class Todo {
         return arrayList;
     }
 
+    public static ArrayList<Task> initAllTrash(DataHelper db,int u_id){
+        ArrayList<Task> arrayList = new ArrayList<Task>();
+        arrayList = db.getAllTrash(u_id);
+        return arrayList;
+    }
 }

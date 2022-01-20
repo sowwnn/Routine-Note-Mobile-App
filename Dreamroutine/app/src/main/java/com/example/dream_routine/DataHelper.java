@@ -499,6 +499,40 @@ public class DataHelper extends SQLiteOpenHelper {
         return arrTask;
     }
 
+    @SuppressLint("Range")
+    public ArrayList<Task> getAllTrash(int u_id) {
+        ArrayList<Task> arrTask = new ArrayList<Task>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Trash = 0 AND User_id = 1";
+
+        LogUtil.LogD(LOG, selectQuerry);
+
+        Cursor c = database.rawQuery(selectQuerry, null);
+
+        if ((c != null) && (c.getCount() > 0)) {
+            c.moveToFirst();
+            do {
+                // dong goi thong tin vao 1 doi tuong task
+                Task task = new Task();
+
+                task.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
+                task.setTaskName(c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+                task.setTaskTag(c.getString(c.getColumnIndex(KEY_TASK_TAG)));
+                task.setTaskDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                task.setTaskNote(c.getString(c.getColumnIndex(KEY_TASK_NOTE)));
+                task.setUserId(c.getString(c.getColumnIndex(KEY_USER_ID)));
+                task.setTaskDone(c.getInt(c.getColumnIndex(KEY_DONE)));
+                task.setTaskTrash(c.getInt(c.getColumnIndex(KEY_TRASH)));
+
+                arrTask.add(task);
+            } while (c.moveToNext()); // chuyen toi dong tiep theo
+        }
+
+        // tra ve danh sach cac task
+        return arrTask;
+    }
+
     public void TaskDone(int _id){
         SQLiteDatabase myDB = this.getWritableDatabase();
         String sql = "UPDATE tbl_task SET Done = 0 WHERE _id = "+_id+"";

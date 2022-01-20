@@ -272,7 +272,7 @@ public class CalendarActivity extends AppCompatActivity implements TodoRAdapter.
             int index = viewHolder.getAdapterPosition();
 
             Task temp = arrayFList.get(index);
-            Toast.makeText(getApplicationContext(),temp.getTaskName()+"---"+temp.get_id(), Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(),temp.getTaskName()+"---"+temp.get_id(), Toast.LENGTH_LONG).show();
             db.moveToTrash(temp.get_id());
             arrayFList.remove(viewHolder.getAdapterPosition());
             todoAdapter.notifyDataSetChanged();

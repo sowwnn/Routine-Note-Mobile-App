@@ -100,7 +100,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         db = new DataHelper(getApplicationContext());
 
         Intent intent = getIntent();
-        id = intent.getIntExtra("Id", 0);
+        id = intent.getIntExtra("Id", 1);
 
         User user = db.getUser(id);
 
@@ -134,7 +134,27 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.analytics:
+                        Toast.makeText(Dashboard.this, "Feature coming soon", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.categories:
+                        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                Intent intent1 = new Intent(Dashboard.this,Categories.class);
+                                intent1.getIntExtra("id",0);
+                                startActivity(intent1);
+                                return true;
+                            }
+                        });
+                }       return true;
+            }
+        });
+
 
 
         //BottomSheet
@@ -328,7 +348,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             int index = viewHolder.getAdapterPosition();
 
             Task temp = arrayFList.get(index);
-            Toast.makeText(getApplicationContext(),temp.getTaskName()+"---"+temp.get_id(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),temp.getTaskName()+"---"+temp.get_id(), Toast.LENGTH_LONG).show();
             db.moveToTrash(temp.get_id());
             arrayFList.remove(viewHolder.getAdapterPosition());
             todoAdapter.notifyDataSetChanged();

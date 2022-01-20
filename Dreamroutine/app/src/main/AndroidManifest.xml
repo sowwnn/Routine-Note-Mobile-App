@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dreamroutine">
         <activity
-            android:name=".EditTask"
+            android:name=".Categories"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".EditTask"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true"
