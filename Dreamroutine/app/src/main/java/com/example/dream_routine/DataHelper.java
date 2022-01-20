@@ -217,7 +217,7 @@ public class DataHelper extends SQLiteOpenHelper {
             do {
                 // dong goi thong tin vao 1 doi tuong task
                 Task task = new Task();
-                
+
                 task.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
                 task.setTaskName(c.getString(c.getColumnIndex(KEY_TASK_NAME)));
                 task.setTaskTag(c.getString(c.getColumnIndex(KEY_TASK_TAG)));
@@ -298,8 +298,8 @@ public class DataHelper extends SQLiteOpenHelper {
         return arrTask;
     }
     @SuppressLint("Range")
-    public ArrayList<String> getTaskTodoByTag(String date,String tag,int u_id) {
-        ArrayList<String> arrTask = new ArrayList<String>();
+    public ArrayList<Task> getTaskTodoByTag(String date,String tag,int u_id) {
+        ArrayList<Task> arrTask = new ArrayList<Task>();
 
         SQLiteDatabase database = this.getReadableDatabase();
         String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\" AND Task_tag = \""+ tag+"\" "+"AND User_id = "+ u_id;
@@ -312,16 +312,23 @@ public class DataHelper extends SQLiteOpenHelper {
             c.moveToFirst();
             do {
                 // dong goi thong tin vao 1 doi tuong task
-                String task;
+                Task task = new Task();
 
-                task = (c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+                task.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
+                task.setTaskName(c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+                task.setTaskTag(c.getString(c.getColumnIndex(KEY_TASK_TAG)));
+                task.setTaskDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                task.setTaskNote(c.getString(c.getColumnIndex(KEY_TASK_NOTE)));
+                task.setUserId(c.getString(c.getColumnIndex(KEY_USER_ID)));
+                task.setTaskDone(c.getInt(c.getColumnIndex(KEY_DONE)));
+                task.setTaskTrash(c.getInt(c.getColumnIndex(KEY_TRASH)));
 
                 arrTask.add(task);
             } while (c.moveToNext()); // chuyen toi dong tiep theo
         }
         else
         {
-           arrTask.add("");
+           arrTask.add(new Task());
         }
 
         // tra ve danh sach cac task
@@ -332,6 +339,12 @@ public class DataHelper extends SQLiteOpenHelper {
     public void moveToTrash(int _id){
         SQLiteDatabase myDB = this.getWritableDatabase();
         String sql = "UPDATE tbl_task SET Trash = 0 WHERE _id = "+_id+"";
+        myDB.execSQL(sql);
+    }
+
+    public void undo(int _id){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String sql = "UPDATE tbl_task SET Trash = 1 WHERE _id = "+_id+"";
         myDB.execSQL(sql);
     }
 
@@ -387,7 +400,7 @@ public class DataHelper extends SQLiteOpenHelper {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         HashMap<String,Integer> tag = new HashMap<>();
 
-        Cursor cursor = MyDB.rawQuery("SELECT Task_tag, count(*) FROM tbl_task WHERE User_id = "+u_id+" GROUP by Task_tag", null);
+        Cursor cursor = MyDB.rawQuery("SELECT Task_tag, count(*) FROM tbl_task WHERE User_id = "+u_id+" AND Trash = 1 GROUP by Task_tag", null);
         if ((cursor != null) && (cursor.getCount() > 0)) {
             cursor.moveToFirst();
 
@@ -420,11 +433,11 @@ public class DataHelper extends SQLiteOpenHelper {
         return allday;
     }
     @SuppressLint("Range")
-    public ArrayList<String> getDayTaskByTag(String date, String tag, int u_id) {
-        ArrayList<String> arrTask = new ArrayList<String>();
+    public ArrayList<Task> getDayTaskByTag(String date, String tag, int u_id) {
+        ArrayList<Task> arrTask = new ArrayList<Task>();
 
         SQLiteDatabase database = this.getReadableDatabase();
-        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\" AND Task_tag = \""+ tag+"\" "+"AND User_id = "+ u_id;
+        String selectQuerry = "SELECT * FROM " + TABLE_TASK +" WHERE Deadline = \""+date+"\" AND Task_tag = \""+ tag+"\" "+"AND User_id = "+ u_id+" AND Trash = 1";
 
         LogUtil.LogD(LOG, selectQuerry);
 
@@ -434,20 +447,35 @@ public class DataHelper extends SQLiteOpenHelper {
             c.moveToFirst();
             do {
                 // dong goi thong tin vao 1 doi tuong task
-                String task;
+                Task task = new Task();
 
-                task = (c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+                task.set_id(c.getInt(c.getColumnIndex(KEY_ID)));
+                task.setTaskName(c.getString(c.getColumnIndex(KEY_TASK_NAME)));
+                task.setTaskTag(c.getString(c.getColumnIndex(KEY_TASK_TAG)));
+                task.setTaskDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                task.setTaskNote(c.getString(c.getColumnIndex(KEY_TASK_NOTE)));
+                task.setUserId(c.getString(c.getColumnIndex(KEY_USER_ID)));
+                task.setTaskDone(c.getInt(c.getColumnIndex(KEY_DONE)));
+                task.setTaskTrash(c.getInt(c.getColumnIndex(KEY_TRASH)));
 
                 arrTask.add(task);
             } while (c.moveToNext()); // chuyen toi dong tiep theo
         }
-//        else
-//        {
-//            arrTask.add("");
-//        }
 
         // tra ve danh sach cac task
         return arrTask;
+    }
+
+    public void TaskDone(int _id){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String sql = "UPDATE tbl_task SET Done = 0 WHERE _id = "+_id+"";
+        myDB.execSQL(sql);
+    }
+
+    public void TaskNotDone(int _id){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String sql = "UPDATE tbl_task SET Done = 1 WHERE _id = "+_id+"";
+        myDB.execSQL(sql);
     }
 
 }

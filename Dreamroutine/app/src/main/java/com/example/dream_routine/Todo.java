@@ -33,15 +33,15 @@ public class Todo {
         arrayList = db.getAllTaskName();
         return arrayList;
     }
-    public static ArrayList<String> initByTag(DataHelper db,String date,String tag,int u_id){
+    public static ArrayList<Task> initByTag(DataHelper db,String date,String tag,int u_id){
 
-        ArrayList<String> arrayList = new ArrayList<String>();
+        ArrayList<Task> arrayList = new ArrayList<Task>();
         arrayList = db.getTaskTodoByTag(date,tag,u_id);
         return arrayList;
     }
-    public static ArrayList<String> initDayByTag(DataHelper db,String date,String tag,int u_id){
+    public static ArrayList<Task> initDayByTag(DataHelper db,String date,String tag,int u_id){
 
-        ArrayList<String> arrayList = new ArrayList<String>();
+        ArrayList<Task> arrayList = new ArrayList<Task>();
         arrayList = db.getDayTaskByTag(date,tag,u_id);
         return arrayList;
     }

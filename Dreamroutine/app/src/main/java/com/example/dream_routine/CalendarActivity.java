@@ -2,6 +2,10 @@ package com.example.dream_routine;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -19,6 +23,7 @@ import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +33,7 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -37,14 +43,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-public class CalendarActivity extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity implements TodoRAdapter.OnTaskListener {
     // Listtodo
-    ListView list;
-    ArrayList<String> arrayList;
-    TodoAdapter todoAdapter;
+    RecyclerView list;
+    ArrayList<Task> arrayFList;
+    TodoRAdapter todoAdapter;
     ImageButton btnback;
     FloatingActionButton btnnewtask;
     BottomSheetDialog bottomSheetNewTask;
+    ConstraintLayout rootView;
 
     //var
     TextView title;
@@ -92,7 +99,16 @@ public class CalendarActivity extends AppCompatActivity {
         date = formatter.format(today);
 
 
-
+        //Back
+        btnback = findViewById(R.id.btnback);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back = new Intent(CalendarActivity.this,Dashboard.class);
+                back.putExtra("Id",id);
+                startActivity(back);
+            }
+        });
 
             //Calendar
         compactcalendar_view = findViewById(R.id.compactcalendar_view);
@@ -102,8 +118,8 @@ public class CalendarActivity extends AppCompatActivity {
 
         //List task
         list = findViewById(R.id.lvcldTask);
-
-        refreshList(date);
+        rootView = findViewById(R.id.root_view_2);
+        refreshdayList(date);
 
         compactcalendar_view.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -187,10 +203,17 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
         setListener = new DatePickerDialog.OnDateSetListener() {
+            String smonth;
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month+1;
-                String date = day+"/"+month+"/"+year;
+                if(month < 10){
+                    smonth = "0"+month;
+                }
+                else{
+                    smonth = ""+month;
+                }
+                String date = day+"/"+smonth+"/"+year;
                 txtdeadline.setText(date);
             }
         };
@@ -205,7 +228,7 @@ public class CalendarActivity extends AppCompatActivity {
                 String tasknote = txtnote.getText().toString();
                 String tasktag = txttag.getText().toString();
                 String userid = String.valueOf(id);
-                Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid);
+                Task task = new Task(taskname, tasktag, taskdeadline, tasknote, userid,0,0);
                 if (taskname.equals("") || taskdeadline.equals("") || tasktag.equals("")) {
                     Toast.makeText(getApplicationContext(), "Can't be null", Toast.LENGTH_LONG).show();
                 } else {
@@ -221,32 +244,68 @@ public class CalendarActivity extends AppCompatActivity {
 
     }
 
-    public void refreshList(String date){
-        arrayList = Todo.initByTag(db,date,tag,id);
-
-        todoAdapter = new TodoAdapter(CalendarActivity.this, R.layout.todo_item, arrayList);
-
-        list.setAdapter(todoAdapter);
-
-        btnback = findViewById(R.id.btnback);
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent back = new Intent(CalendarActivity.this,Dashboard.class);
-                back.putExtra("Id",id);
-                startActivity(back);
-            }
-        });
-    }
-
     public void refreshdayList(String date){
-        arrayList = Todo.initDayByTag(db,date,tag,id);
+        arrayFList = Todo.initDayByTag(db,date,tag,id);
 
-        todoAdapter = new TodoAdapter(CalendarActivity.this, R.layout.todo_item, arrayList);
+        if(arrayFList != null) {
+            todoAdapter = new TodoRAdapter(CalendarActivity.this, arrayFList, this, db);
 
-        list.setAdapter(todoAdapter);
+            list.setAdapter(todoAdapter);
 
+            list.setLayoutManager(new LinearLayoutManager(this));
+
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(list);
+        }
+
+        HashMap<String,Integer> table = db.getTaskTag(id);
+        ArrayList<String >job = new ArrayList<>(table.keySet());
+        ArrayList<Integer>tasks = new ArrayList<>(table.values());
+
+        drdtags = new ArrayList<String>();
+        drdtags = job;
+        drdtags.add("");
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int index = viewHolder.getAdapterPosition();
+
+            Task temp = arrayFList.get(index);
+            Toast.makeText(getApplicationContext(),temp.getTaskName()+"---"+temp.get_id(), Toast.LENGTH_LONG).show();
+            db.moveToTrash(temp.get_id());
+            arrayFList.remove(viewHolder.getAdapterPosition());
+            todoAdapter.notifyDataSetChanged();
+
+            Snackbar snackbar = Snackbar.make(rootView, "Removed",Snackbar.LENGTH_LONG);
+            snackbar.setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db.undo(temp.get_id());
+                    refreshdayList(date);
+                }
+            });
+
+
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+        }
+
+    };
+
+//    public void refreshList(String date){
+//        arrayFList = Todo.initByTag(db,date,tag,id);
+//
+//        todoAdapter = new TodoAdapter(CalendarActivity.this, R.layout.todo_item, arrayList);
+//
+//        list.setAdapter(todoAdapter);
+//
+//    }
 //    public void refreshTask() {
 //        HashMap<String,Integer> table = db.getTaskTag(id);
 //        ArrayList<String >job = new ArrayList<>(table.keySet());
@@ -256,6 +315,7 @@ public class CalendarActivity extends AppCompatActivity {
 //        drdtags = job;
 //        drdtags.add("");
 //    }
+
 
     public void calendar_event(){
         ArrayList<String> allday = db.getAllDay(id,tag);
@@ -269,5 +329,10 @@ public class CalendarActivity extends AppCompatActivity {
             Event ev1 = new Event(Color.rgb(252,209,41), date1.getTime(),null);
             compactcalendar_view.addEvent(ev1);
         }
+    }
+
+    @Override
+    public void onTaskClick(int position) {
+
     }
 }

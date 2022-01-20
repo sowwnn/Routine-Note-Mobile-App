@@ -307,7 +307,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     public void refreshTask() {
         arrayFList  = Todo.initFTodo(db,date,id);
 
-        todoAdapter = new TodoRAdapter(Dashboard.this, arrayFList,this);
+        todoAdapter = new TodoRAdapter(Dashboard.this, arrayFList,this,db);
 
         list.setAdapter(todoAdapter);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -339,8 +339,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             snackbar.setAction("UNDO", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    temp.setTaskTrash(0);
-                    db.updateTask(temp, temp.get_id());
+                    db.undo(temp.get_id());
                     refreshTask();
                 }
             });
@@ -349,12 +348,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
             snackbar.setActionTextColor(Color.YELLOW);
             snackbar.show();
         }
-//        public void undoItem ( int index){
-//            arrayList.add(arrayList.get(index));
-//            todoAdapter.notifyItemInserted(index);
-//        }
-
-
 
     };
 
@@ -364,6 +357,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         intent.putExtra("task_id",arrayFList.get(position)._id);
         startActivity(intent);
     }
+
 }
 
 

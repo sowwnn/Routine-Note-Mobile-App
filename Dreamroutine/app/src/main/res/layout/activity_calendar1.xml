@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarActivity">
+    tools:context=".CalendarActivity"
+    android:id="@+id/root_view_2">
 
     <TextView
         android:id="@+id/txtcldTag"
@@ -67,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcldTag" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lvcldTask"
         android:layout_width="412dp"
         android:layout_height="267dp"
@@ -78,6 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/compactcalendar_view"
         app:layout_constraintVertical_bias="0.0" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnnewtask"
         android:layout_width="wrap_content"
